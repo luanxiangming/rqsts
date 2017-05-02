@@ -6,7 +6,7 @@ print("\nSTART: " + time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()
 
 ''' GET '''
 ''' Timeouts '''
-r = requests.get('http://172.16.233.82:8091/sessionBooking/getSessionrecordViewList?clientSn=566889', timeout=1)
+r = requests.get('http://172.16.233.82:8091/sessionBooking/getSessionrecordViewList?clientSn=566889', timeout=3)
 print('\n' + r.url)
 print('\t' + r.text)
 
@@ -20,19 +20,19 @@ print('\n' + r.url)
 print('\t' + r.text)
 
 ''' PUT '''
-r = requests.put('https://echo.getpostman.com/put', data = 'Etiam mi lacus')
+r = requests.put('https://echo.getpostman.com/put', data = 'Etiam mi lacus', timeout=3)
 print('\n' + r.url)
 print('\t' + r.text)
 
 ''' DELETE '''
-r = requests.delete('https://echo.getpostman.com/delete')
+r = requests.delete('https://echo.getpostman.com/delete', timeout=3)
 print('\n' + r.url)
 print('\t' + r.text)
 
 ''' Passing Parameters In URLs '''
 ''' Response Status Codes '''
 payload = {'profileId': 866, 'DCGSValid': 1}
-r = requests.get('http://172.16.233.82:8091/sessionBooking/getDCGS', params=payload)
+r = requests.get('http://172.16.233.82:8091/sessionBooking/getDCGS', params=payload, timeout=3)
 print('\n' + r.url)
 print('\tEncoding: ' + r.encoding)
 print('\tStatus: ' + str(r.status_code))
@@ -42,7 +42,7 @@ print('\t' + r.text)
 ''' Response Headers '''
 url = 'https://echo.getpostman.com/headers'
 headers = {'my-sample-header': 'Lorem ipsum dolor sit amet'}
-r = requests.get(url, headers = headers)
+r = requests.get(url, headers = headers, timeout=3)
 print('\n' + r.url)
 print('\t' + r.text)
 print('Response Headers: ')
@@ -51,7 +51,7 @@ for k,v in r.headers.items():
 
 ''' Cookies '''
 url = 'https://echo.getpostman.com/cookies'
-r = requests.get(url)
+r = requests.get(url, timeout=3)
 print('Cookies: ')
 print('\t' + r.cookies['sails.sid'])
 for k,v in r.cookies.items():
@@ -59,14 +59,14 @@ for k,v in r.cookies.items():
 
 ''' Redirection and History '''
 inout = 1
-r = requests.get('http://github.com')
+r = requests.get('http://github.com', timeout=3)
 print('\tStatus: ' + str(r.status_code))
 if inout==1 and r.status_code==requests.codes.ok:
 	print("\tHistory: ")
 	for hsty in r.history:
 		print(hsty.text)
 
-r = requests.get('http://github.com', allow_redirects=False)
+r = requests.get('http://github.com', allow_redirects=False, timeout=3)
 print('\tStatus: ' + str(r.status_code))
 print("\tHistory: ")
 for hsty in r.history:

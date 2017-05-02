@@ -45,7 +45,7 @@ except requests.exceptions.SSLError:
 
 ''' defer downloading the response body until you access the Response.content attribute with the stream parameter '''
 tarball_url = 'https://github.com/kennethreitz/requests/tarball/master'
-r = requests.get(tarball_url, stream=True)
+r = requests.get(tarball_url, stream=True, timeout=3)
 # At this point only the response headers have been downloaded and the connection remains open
 print(r.headers)
 if int(r.headers['content-length']) < 100:
@@ -69,11 +69,25 @@ else:
 	print(r.content)
 
 ''' HTTP Verbs '''
-r = requests.get('https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad')
+r = requests.get('https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad', timeout=3)
 if r.status_code==requests.codes.ok:
-	print(r.json()[u'committer'])
-	print(r.json()[u'message'])
+	print(r.json())
+	print(r.json().keys())
+	print(r.json()['committer'])
+	print(r.json()['message'])
 verbs = requests.options(r.url)
 print("Verb's status code: " + str(verbs.status_code))
+
+r = requests.get('https://api.github.com/repos/kennethreitz/requests/issues/482')
 issue = json.loads(r.text)
+print(issue.keys())
+print(issue[u'title'])
+print(issue[u'comments'])
+
+r = requests.get(r.url + u'/comments')
+print(r.json()[2].keys())
+print(r.json()[2][u'body'])
+print(r.json()[2][u'user'][u'login'])
+
+
 
