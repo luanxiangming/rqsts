@@ -3,6 +3,7 @@
 import requests
 import time
 import logging
+import mail
 
 ''' CHECK_IN_OUT '''
 
@@ -43,8 +44,10 @@ def check_in_out():
 		hour = time.strftime('%H')
 		if int(hour) <= 12:
 			check_inout(1)
+			# mail.send_mail('签入成功', '签入成功')
 		else:
 			check_inout(0)
+			# mail.send_mail('签出成功', '签出成功')
 	else:
 		logging.warning("It's weekend.")
 
