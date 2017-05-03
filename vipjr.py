@@ -44,7 +44,7 @@ def register(brandId, account, password, gender=1, mobile='111', phone='', Sourc
 		'parentFlag': 0
 	}
 	r = try_post(url, payload, 10)
-	print(r.content)
+	print(r.text)
 	if r.json()['success']==True:
 		print(account + " --- registered successfully!")
 	else:
@@ -64,7 +64,7 @@ def ActivatingAccount(account):
 	print('Checkid: ' + checkid)
 	payload = {'checkid': checkid, 'client': account}
 	r = try_post(url, payload, 10)
-	# print(r.content)
+	print(r.text)
 	if r.status_code==requests.codes.ok:
 		print(account + " --- activated successfully!")
 	else:

@@ -23,7 +23,7 @@ with requests.Session() as s:
 			print("\t" + k + ": " + v)
 		print(r.encoding)
 		print(str(r.status_code))
-		print(r.content)
+		print(r.text)
 
 ''' Requests will throw a SSLError if it's unable to verify the certificate '''
 try:
@@ -49,7 +49,7 @@ r = requests.get(tarball_url, stream=True, timeout=3)
 # At this point only the response headers have been downloaded and the connection remains open
 print(r.headers)
 if int(r.headers['content-length']) < 100:
-  	print(r.content)
+  	print(r.text)
 
 ''' Proxies '''
 # To use HTTP Basic Auth with your proxy, use the http://user:password@host/ syntax:
@@ -66,7 +66,7 @@ except requests.ConnectionError:
 except requests.Timeout:
 	print("TimeOut..." + "\n\n")
 else:
-	print(r.content)
+	print(r.text)
 
 ''' HTTP Verbs '''
 r = requests.get('https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad', timeout=3)

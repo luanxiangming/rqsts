@@ -27,7 +27,7 @@ def check_inout(inout):
 		except requests.Timeout:
 			logging.info("TimeOut..." + "\n\n")
 		else:
-			logging.info(r.content)
+			logging.info(r.text)
 			if inout==1 and r.status_code==requests.codes.ok:
 				logging.info("Check In Succeed." + "\n\n")
 			elif inout==0 and r.status_code==requests.codes.ok:

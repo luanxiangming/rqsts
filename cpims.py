@@ -34,25 +34,21 @@ def CfgProductRequest(s):
 		'contractSn': 0,
 		'prowerSessionContractSn': 0,
 		'unlimitedCardContractSn': 0,
-		'clientSn': '2602191',
+		'clientSn': '1654157',
 		'originalContractSn': 0,
 		'webSite': 'C',
 		'selectedProductSn': 0,
 	}
 	r = s.post('http://stage-imsp-content.vipabc.com/Api/CfgProductRequest', data=payload, timeout=5)
-	print("Request headers: ")
-	for k,v in r.request.headers.items():
-		print("\t" + k + ": " + v)
-	print("Response headers: ")
-	for k,v in r.headers.items():
-		print("\t" + k + ": " + v)
-	print(r.content)
+	for index, product in enumerate(r.json()['Data']):
+		print(index, product['Sn'], product['ProductName'], product['TotalCash'])
+	
 	
 def main():
 	
 	with requests.Session() as s:
 		login(s)
 		CfgProductRequest(s)
-	# mail.send_mail('签入成功', '签入成功')
+	# mail.send_mail('成功', '成功')
 
 main()
