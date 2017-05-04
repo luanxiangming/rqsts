@@ -8,7 +8,7 @@ import mail
 
 ''' CHECK_IN_OUT '''
 
-card_numbers = ['工号']
+card_numbers = ['工号1', '工号2']
 url = 'http://tpehrweb.tutorabc.com/TIMG_inout/form/SystemHttp.json'
 log_file = 'log.txt'
 
@@ -19,9 +19,9 @@ logging.basicConfig(level=logging.DEBUG,
                 filemode='a')
 
 def check_inout(inout):
+	time.sleep(random.randint(60, 600))
 	for card_number in card_numbers:
 		payload = {'card_number': card_number, 'inout': inout, 'handlerName': 'Index.Index', 'method': 'Check_InOUT'}
-		time.sleep(random.randint(60, 600))
 		try:
 			r = requests.post(url, data=payload, timeout=3)
 		except requests.ConnectionError:
