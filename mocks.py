@@ -99,6 +99,28 @@ class ProductionClass(unittest.TestCase):
 		mock.x = 6
 		print(mock.x)
 
+	# 26.5.1.7. Raising exceptions with mocks
+	@unittest.skip
+	def test_exceptions_with_mock(self):
+		mock = Mock(side_effect=Exception('Boom!'))
+		print(mock())
+
+	# 26.5.1.8. Side effect functions and iterables
+	def test_side_effect_iterables(self):
+		mock = MagicMock(side_effect=[3, 4, 5])
+		self.assertEqual(mock(), 3)
+		self.assertEqual(mock(), 4)
+		self.assertEqual(mock(), 5)
+	def side_effect(self, *args):
+		vals = {(1,2):1, (2,3):2}
+		return vals[args]
+	def test_side_effect_functions(self):
+		mock = MagicMock(side_effect=self.side_effect)
+		print(mock(1,2))
+		print(mock(2,3))
+
+
+
 
 if __name__ == '__main__':
 	unittest.main()
