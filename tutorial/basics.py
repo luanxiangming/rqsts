@@ -52,5 +52,12 @@ class PythonBasics(unittest.TestCase):
         a, b, c, d = 20, 5.5, True, 4+3j
         print(type(a), type(b), type(c), type(d))
 
+    # 斐波纳契数列
+    def test_fibonacci_series(self):
+        a, b = 0, 1
+        while b < 100:
+            print(b, end=', ')
+            a, b = b, b+a
+
 if __name__ == '__main__':
     unittest.main()
