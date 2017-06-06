@@ -4,7 +4,7 @@ import requests
 import time
 import logging
 import random
-import mail
+import mails
 
 ''' CHECK_IN_OUT '''
 
