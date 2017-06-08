@@ -1,7 +1,7 @@
 import unittest, keyword
 
 class PythonBasics(unittest.TestCase):
-
+    
     # python保留字
     def test_keyword(self):
         print(keyword.kwlist)

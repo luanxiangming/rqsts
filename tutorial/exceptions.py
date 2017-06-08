@@ -1,9 +1,7 @@
 import unittest, sys
 
 class BaseError(Exception):
-	''' 用户自定义异常, 异常应该继承自 Exception 类，或者直接继承，或者间接继承
-	当创建一个模块有可能抛出多种不同的异常时，一种通常的做法是为这个包建立一个基础异常类，然后基于这个基础类为不同的错误情况创建不同的子类
-	'''
+	''' 用户自定义异常, 异常应该继承自 Exception 类，或者直接继承，或者间接继承 '''
 	def __init__(self, value):
 		self.value = value
 
@@ -11,15 +9,12 @@ class BaseError(Exception):
 		return repr(self.value)
 
 class InputError(BaseError):
-	"""Exception raised for errors in the input.
-    Attributes:
-        expression -- input expression in which the error occurred
-        message -- explanation of the error
+	"""当创建一个模块有可能抛出多种不同的异常时，
+	一种通常的做法是为这个包建立一个基础异常类，然后基于这个基础类为不同的错误情况创建不同的子类
     """
 	def __init__(self, expression, message):
 		self.expression = expression
 		self.message = message
-
 
 class PythonException(unittest.TestCase):
 	def setUp(self):
@@ -57,7 +52,6 @@ class PythonException(unittest.TestCase):
 			raise InputError('Enter non-null message', '404')
 		except InputError as e:
 			print('Custom Exception:\n\t Expression: {0}\n\t Message: {1}'.format(e.expression, e.message))
-
 
 if __name__ == '__main__':
 	unittest.main()
