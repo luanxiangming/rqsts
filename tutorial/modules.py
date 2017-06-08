@@ -13,4 +13,3 @@ print(functions.__name__) #每个模块都有一个__name__属性，当其值是
 
 print(dir(functions)) #找到模块内定义的所有名称
 print(dir()) #如果没有给定参数，那么 dir() 函数会罗列出当前定义的所有名称:
-
