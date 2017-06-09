@@ -1,5 +1,6 @@
 # 导入tutotial/__init__.py中__all__定义的模块
 from tutorial import *
+import doctest
 
 functions.print_info(1,2,3)
 ''' 模块定义 '''
@@ -26,4 +27,17 @@ print('dict: ' + str(basic.__dict__))
 print('weakref: ' + str(basic.__weakref__))
 print('init: ' + str(basic.__init__))
 
+def average(values):
+	"""Computes the arithmetic mean of a list of numbers.
+
+	>>> print(average([20, 30, 70]))
+	40.0
+	"""
+	return sum(values) / len(values)
+
+if __name__ == '__main__':
+	'''测试模块
+	doctest模块提供了一个工具，扫描模块并根据程序中内嵌的文档字符串执行测试。
+	'''
+	doctest.testmod(verbose=True)
 

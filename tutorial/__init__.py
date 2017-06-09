@@ -3,4 +3,4 @@
 那么在使用 from package import * 的时候就把这个列表中的所有名字作为包内容导入。
 '''
 
-__all__ = ['functions', 'basics']
+__all__ = ['functions', 'basics',]

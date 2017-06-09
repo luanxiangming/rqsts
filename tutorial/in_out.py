@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import requests
-import time
-import logging
-import random
-import mails
+import requests, time, logging, random, mails
 
 ''' CHECK_IN_OUT '''
 
