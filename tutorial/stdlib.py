@@ -110,7 +110,7 @@ class PythonStdLib(unittest.TestCase):
 		'''
 		print('module date: ')
 		print(dir(date))
-		print(date.today())
+		print("Today: " + str(date.today()))
 		print(date.today().strftime('%d-%m-%y. %d %b %Y is a %a on the %dth day of %B'))
 
 		birthday = date(1983, 7, 14)
@@ -139,7 +139,6 @@ class PythonStdLib(unittest.TestCase):
 		old = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
 		new = Timer('a,b=b,a', 'a=1;b=2').timeit()
 		self.assertLess(new, old)
-
 
 	def test_doctest(self):
 		print('module doctest: ')

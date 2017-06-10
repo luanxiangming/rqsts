@@ -21,6 +21,7 @@ class PythonNumbers(unittest.TestCase):
     def test_random(self):
         print('\n')
         print('Random number between 1~6: %s' % random.choice(range(1, 7)))
+        print('Random number between 1~6: %s' % random.randint(1, 6))
         print('Random number between 0~6: %s' % random.randrange(7))
         print('Random odd number between 1~9: %s' % random.randrange(1, 10, 2)) #从指定范围内，按指定基数递增的集合中获取一个随机数，基数缺省值为1
         print('Random number between 0~1: %s' % random.random()) #返回随机生成的一个实数，它在[0,1)范围内

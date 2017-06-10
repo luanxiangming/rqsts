@@ -39,5 +39,5 @@ if __name__ == '__main__':
 	'''测试模块
 	doctest模块提供了一个工具，扫描模块并根据程序中内嵌的文档字符串执行测试。
 	'''
-	doctest.testmod(verbose=True)
+	doctest.testmod(verbose=True) # 自动验证嵌入测试
 

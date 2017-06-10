@@ -23,7 +23,7 @@ class PythonString(unittest.TestCase):
         self.assertTrue('23444'.isdecimal()); self.assertFalse('abc123'.isdecimal()) #检查字符串是否只包含十进制字符,这种方法只存在于unicode对象
 
         self.assertTrue('runoob..wow!!'.islower()); self.assertFalse('RUNOOB..wow!!'.islower()) #检测字符串是否由小写字母组成
-        self.assertTrue('   '.isspace()) #测字符串是否只由空格组成
+        self.assertTrue('   '.isspace()) #判断所有字符都是空白字符、\t、\n、\r
         self.assertTrue('This Is Title Format.'.istitle()); #检测字符串中所有的单词拼写首字母是否为大写，且其他字母为小写
         self.assertTrue('ABC...DEF'.isupper()) #检测字符串中所有的字母是否都为大写
         self.assertEqual('-'.join(('1','2','3')), '1-2-3') #将序列中的元素以指定的字符连接生成一个新的字符串
