@@ -1,6 +1,7 @@
 # MAC OS X files
 .DS_Store
 log.txt
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
