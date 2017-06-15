@@ -1,8 +1,6 @@
 import unittest, os, shutil, glob, sys, re, math, random, zlib, doctest
 from urllib import request
-from datetime import date
 from timeit import Timer
-
 
 class PythonStdLib(unittest.TestCase):
 	def setUp(self):
@@ -82,39 +80,6 @@ class PythonStdLib(unittest.TestCase):
 			line = line.decode('utf-8')
 			if '京东618' in line:
 				print(line)
-	
-	def test_date(self):
-		'''python中时间日期格式化符号：
-		%y 两位数的年份表示（00-99）
-		%Y 四位数的年份表示（000-9999）
-		%m 月份（01-12）
-		%d 月内中的一天（0-31）
-		%H 24小时制小时数（0-23）
-		%I 12小时制小时数（01-12）
-		%M 分钟数（00=59）
-		%S 秒（00-59）
-		%a 本地简化星期名称
-		%A 本地完整星期名称
-		%b 本地简化的月份名称
-		%B 本地完整的月份名称
-		%c 本地相应的日期表示和时间表示
-		%j 年内的一天（001-366）
-		%p 本地A.M.或P.M.的等价符
-		%U 一年中的星期数（00-53）星期天为星期的开始
-		%w 星期（0-6），星期天为星期的开始
-		%W 一年中的星期数（00-53）星期一为星期的开始
-		%x 本地相应的日期表示
-		%X 本地相应的时间表示
-		%Z 当前时区的名称
-		%% %号本身
-		'''
-		print('module date: ')
-		print(dir(date))
-		print("Today: " + str(date.today()))
-		print(date.today().strftime('%d-%m-%y. %d %b %Y is a %a on the %dth day of %B'))
-
-		birthday = date(1983, 7, 14)
-		print(date.today() - birthday) # dates support calendar arithmetic
 
 	'''数据压缩
 	模块直接支持通用的数据打包和压缩格式：zlib，gzip，bz2，zipfile，以及 tarfile
@@ -144,8 +109,6 @@ class PythonStdLib(unittest.TestCase):
 		print('module doctest: ')
 		print(dir(doctest))
 		doctest.testmod(verbose=True) #实例在test.py
-
-		
 
 if __name__ == '__main__':
 	unittest.main()

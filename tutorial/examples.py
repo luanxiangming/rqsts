@@ -1,4 +1,4 @@
-import unittest, cmath, re, calendar, datetime
+import unittest, cmath, re
 
 class PythonExamples(unittest.TestCase):
 	
@@ -36,7 +36,7 @@ class PythonExamples(unittest.TestCase):
 	'''一个大于1的自然数，除了1和它本身外，不能被其他自然数（质数）整除（2, 3, 5, 7等），
 	换句话说就是该数除了1和它本身以外不再有其他的因数'''
 	def test_prime_number(self):
-		numbers = range(10, 20)
+		numbers = range(30, 50)
 		primes = []
 		for num in numbers:
 			if num > 1:
@@ -138,26 +138,6 @@ class PythonExamples(unittest.TestCase):
 			c += 1
 		print('Minimum multiply: ' + str(lcm))
 
-	''' 生成日历 '''
-	def test_calendar(self):
-		print('module calendar: ')
-		print(dir(calendar))
-		print(calendar.month(1983, 7))
-		'''计算每个月天数
-		第一个元素是所查月份的第一天对应的是星期几（0-6），第二个元素是这个月的天数。
-		以下实例输出的意思为 1983 年 7 月份的第一天是星期五，该月总共有 31 天'''
-		self.assertEqual(calendar.monthrange(1983, 7), (4, 31))
-
-	''' 获取昨天日期 '''
-	def test_datetime(self):
-		print('module datetime: ')
-		print(dir(datetime))
-		today = datetime.date.today()
-		print('Today: ' + str(today))
-
-		one_day = datetime.timedelta(days=1)
-		print('Yesterday: ' + str(today - one_day))
-
 	''' 使用join链接list成为字符串
 	使用split分割字符串成为列表, 皆为字符串方法 '''
 	def test_join_split_list(self):
@@ -168,7 +148,6 @@ class PythonExamples(unittest.TestCase):
 
 		restored = joined.split(';')
 		print('String splitted to List: ' + str(restored))
-
 
 
 if __name__ == '__main__':
