@@ -33,7 +33,7 @@ class PythonThreads(unittest.TestCase):
 		threading1 = myThread('101', 'Threading-1', 1)
 		threading2 = myThread('102', 'Threading-2', 2)
 
-		# 开启新线程
+		# 开启新线程,即调用了线程的 run() 方法
 		threading1.start()
 		threading2.start()
 
@@ -60,11 +60,14 @@ class myThread(threading.Thread):
 
 	def run(self):
 		print('开始线程: ' + self.name)
+
+		self.threadLock.acquire()  # 获取锁，用于线程同步
 		self.print_time(self.name, self.interval, 5)
+		self.threadLock.release() # 释放锁，开启下一个线程
+
 		print('退出线程: ' + self.name)
 
 	def print_time(self, threadname, delay, counter):
-		self.threadLock.acquire()  # 获取锁，用于线程同步
 		while counter:
 			global exitFlag
 			if exitFlag:
@@ -72,7 +75,6 @@ class myThread(threading.Thread):
 			time.sleep(delay)
 			print('{}: {}'.format(threadname, time.ctime()))
 			counter -= 1
-		self.threadLock.release() # 释放锁，开启下一个线程
 
 
 if __name__ == '__main__':
