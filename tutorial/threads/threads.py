@@ -1,4 +1,7 @@
-import unittest, _thread, time, threading, queue
+import _thread
+import threading
+import time
+import unittest
 
 exitFlag = 0
 
@@ -6,21 +9,17 @@ exitFlag = 0
 
 
 class PythonThreads(unittest.TestCase):
-	@classmethod
-	def setUpClass(cls):
-		print('module _thread: ')
-		print(dir(_thread))
-		print('module threading: ')
-		print(dir(threading))
 
-	def print_time(self, threadName, delay):
+	@staticmethod
+	def print_time(thread_name, delay):
 		for i in range(5):
 			time.sleep(delay)
-			print("{}: {}".format(threadName, time.ctime()))
+			print("{}: {}".format(thread_name, time.ctime()))
 
 	@unittest.skip
 	def test_thread(self):
 		try:
+			# 创建两个线程
 			_thread.start_new_thread(self.print_time, ('Thread-1', 2))
 			_thread.start_new_thread(self.print_time, ('Thread-2', 3))
 		except:
@@ -29,6 +28,11 @@ class PythonThreads(unittest.TestCase):
 			pass
 
 	def test_threading_lock(self):
+		print('module _thread: ')
+		print(dir(_thread))
+		print('module threading: ')
+		print(dir(threading))
+
 		threads = []
 
 		# 创建新线程
@@ -38,6 +42,9 @@ class PythonThreads(unittest.TestCase):
 		# 开启新线程,即调用了线程的 run() 方法
 		threading1.start()
 		threading2.start()
+
+		print('Current Thread: ' + repr(threading.current_thread()))  # 返回当前的线程变量
+		print('Thread List: ' + repr(threading.enumerate()))  # 返回一个包含正在运行的线程的list。正在运行指线程启动后、结束前，不包括启动前和终止后的线程
 
 		# 添加线程到线程列表
 		threads.append(threading1)
@@ -54,9 +61,9 @@ class PythonThreads(unittest.TestCase):
 class MyThread(threading.Thread):
 	threadLock = threading.Lock()
 
-	def __init__(self, threadID, name, interval):
+	def __init__(self, thread_id, name, interval):
 		threading.Thread.__init__(self)
-		self.threadID = threadID
+		self.threadID = thread_id
 		self.name = name
 		self.interval = interval
 
@@ -69,13 +76,14 @@ class MyThread(threading.Thread):
 
 		print('退出线程: ' + self.name)
 
-	def print_time(self, threadname, delay, counter):
+	@staticmethod
+	def print_time(thread_name, delay, counter):
 		while counter:
 			global exitFlag
 			if exitFlag:
-				threadname.exit()
+				thread_name.exit()
 			time.sleep(delay)
-			print('{}: {}'.format(threadname, time.ctime()))
+			print('{}: {}'.format(thread_name, time.ctime()))
 			counter -= 1
 
 
