@@ -1,6 +1,6 @@
 import xml.sax
 
-'''python使用SAX解析xml
+"""python使用SAX解析xml
 SAX是一种基于事件驱动的API。
 利用SAX解析XML文档牵涉到两个部分:解析器和事件处理器。
 解析器负责读取XML文档,并向事件处理器发送事件,如元素开始跟元素结束事件;
@@ -9,7 +9,9 @@ SAX是一种基于事件驱动的API。
 2、只需要文件的部分内容，或者只需从文件中得到特定信息。
 3、想建立自己的对象模型的时候。
 在python中使用sax方式处理xml要先引入xml.sax中的parse函数，还有xml.sax.handler中的ContentHandler。
-'''
+"""
+
+
 class MovieHandler(xml.sax.ContentHandler):
 	def __init__(self):
 		self.CurrentData = ""
@@ -22,6 +24,7 @@ class MovieHandler(xml.sax.ContentHandler):
 
 	'''元素开始调用
 	遇到XML开始标签时调用，name是标签的名字，attrs是标签的属性值字典'''
+
 	def startElement(self, name, attrs):
 		self.CurrentData = name
 		if name == 'movie':
@@ -31,6 +34,7 @@ class MovieHandler(xml.sax.ContentHandler):
 
 	'''元素结束调用
 	遇到XML结束标签时调用'''
+
 	def endElement(self, name):
 		if self.CurrentData == 'type':
 			print('Type: ' + self.type)
@@ -50,6 +54,7 @@ class MovieHandler(xml.sax.ContentHandler):
 	从一个标签，遇到行结束符之前，存在字符，content的值为这些字符串。
 	标签可以是开始标签，也可以是结束标签。
 	'''
+
 	def characters(self, content):
 		if self.CurrentData == 'type':
 			self.type = content
@@ -61,6 +66,7 @@ class MovieHandler(xml.sax.ContentHandler):
 			self.stars = content
 		elif self.CurrentData == 'description':
 			self.description = content
+
 
 if __name__ == '__main__':
 	# 创建一个新的解析器对象并返回

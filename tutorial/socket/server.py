@@ -1,4 +1,4 @@
-import socket, sys
+import socket
 
 print('module socket: ')
 print(dir(socket))

@@ -72,5 +72,3 @@ print("\tHistory: ")
 for hsty in r.history:
 	print(hsty.text)
 
-
-	

@@ -1,8 +1,10 @@
 import unittest, pickle
 
+
 class PythonFiles(unittest.TestCase):
 	def setUp(self):
 		pass
+
 	def tearDown(self):
 		pass
 
@@ -30,19 +32,19 @@ class PythonFiles(unittest.TestCase):
 
 	def test_file_read(self):
 		with open('tmp/foo.txt', 'r+') as f:
-			print('All: ' + f.read()) #从文件读取指定的字节数，如果未给定或为负则读取所有
+			print('All: ' + f.read())  # 从文件读取指定的字节数，如果未给定或为负则读取所有
 			f.seek(0)
 			print('First five: ' + f.read(5))
 
 	def test_read_line(self):
 		with open('tmp/foo.txt', 'r+') as f:
-			self.assertEqual(f.readline(), 'A: Python is great computer language.\n') #从文件读取整行，包括 "\n" 字符
-			self.assertEqual(f.readline(6), 'B: Yes') #如果指定了一个非负数的参数，则返回指定大小的字节数
+			self.assertEqual(f.readline(), 'A: Python is great computer language.\n')  # 从文件读取整行，包括 "\n" 字符
+			self.assertEqual(f.readline(6), 'B: Yes')  # 如果指定了一个非负数的参数，则返回指定大小的字节数
 
 	def test_read_lines(self):
 		with open('tmp/foo.txt', 'r+') as f:
 			print('打开文件：{}'.format(f.name))
-			print(f.readlines()) # 读取所有行并返回列表
+			print(f.readlines())  # 读取所有行并返回列表
 
 	def test_file_seek_tell(self):
 		with open('tmp/foo.txt', 'r+') as f:
@@ -56,16 +58,17 @@ class PythonFiles(unittest.TestCase):
 	def test_truncate(self):
 		with open('tmp/foo.txt', 'r+') as f:
 			f.readline()
-			f.truncate() #没有指定size，则重置到当前位置
+			f.truncate()  # 没有指定size，则重置到当前位置
 			print('Lines after line truncate: ' + str(f.readlines()))
 		with open('tmp/foo.txt', 'r+') as f:
-			f.truncate(2) #指定了可选参数size，则表示截断文件为size 个字符
+			f.truncate(2)  # 指定了可选参数size，则表示截断文件为size 个字符
 			print('Lines after str truncate: ' + str(f.readlines()))
-			f.seek(0,0); f.write('A: Python is great computer language.\nB: Yes, indeed.\n') #将string写入到文件中,然后返回写入的字符数
+			f.seek(0, 0);
+			f.write('A: Python is great computer language.\nB: Yes, indeed.\n')  # 将string写入到文件中,然后返回写入的字符数
 
 	def test_write(self):
 		with open('tmp/foo.txt', 'r+') as f:
-			f.seek(0, 2) # 在文件末尾写入一行
+			f.seek(0, 2)  # 在文件末尾写入一行
 			f.write('Additional line\n')
 
 	'''
@@ -73,6 +76,7 @@ class PythonFiles(unittest.TestCase):
 	这一序列字符串可以是由迭代对象产生的，如一个字符串列表。
 	换行需要制定换行符 \n。
 	'''
+
 	def test_write_lines(self):
 		with open('tmp/foo.txt', 'r+') as f:
 			seq = ['write\n', 'lines']

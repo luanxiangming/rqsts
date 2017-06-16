@@ -2,13 +2,13 @@ import requests
 from unittest.mock import Mock, MagicMock, patch
 import unittest
 
+
 class TestClient(unittest.TestCase):
 	def send_request(self, url):
 		return requests.get(url).status_code
 
 	def visit_ustack(self):
 		return self.send_request('http://www.ustack.com')
-
 
 	def test_success_request(self):
 		success_send = Mock(return_value='200')
@@ -47,12 +47,15 @@ class TestClient(unittest.TestCase):
 		with patch.object(self, 'send_request', fail_send):
 			self.assertEqual(self.visit_ustack(), status_code)
 
+
 class ProductionClass(unittest.TestCase):
 	# 26.5.1.1. Mock Patching Methods
 	def method(self):
 		self.something(1, 2, 3)
+
 	def something(self, a, b, c):
 		pass
+
 	def test_assert_called_once_with(self):
 		real = ProductionClass()
 		real.something = MagicMock()
@@ -62,6 +65,7 @@ class ProductionClass(unittest.TestCase):
 	# 26.5.1.2. Mock for Method Calls on an Object
 	def closer(self, something):
 		something.close()
+
 	def test_assert_called_with(self):
 		real = ProductionClass()
 		something = Mock()
@@ -71,10 +75,12 @@ class ProductionClass(unittest.TestCase):
 	# 26.5.1.3. Mocking Classes
 	class Foo:
 		def method(self):
-			pass	 
+			pass
+
 	def some_function(self):
 		instance = self.Foo()
 		return instance.method()
+
 	def test_patch(self):
 		with patch('mocks.ProductionClass.Foo') as mock:
 			instance = mock.return_value
@@ -111,15 +117,15 @@ class ProductionClass(unittest.TestCase):
 		self.assertEqual(mock(), 3)
 		self.assertEqual(mock(), 4)
 		self.assertEqual(mock(), 5)
+
 	def side_effect(self, *args):
-		vals = {(1,2):1, (2,3):2}
+		vals = {(1, 2): 1, (2, 3): 2}
 		return vals[args]
+
 	def test_side_effect_functions(self):
 		mock = MagicMock(side_effect=self.side_effect)
-		print(mock(1,2))
-		print(mock(2,3))
-
-
+		print(mock(1, 2))
+		print(mock(2, 3))
 
 
 if __name__ == '__main__':

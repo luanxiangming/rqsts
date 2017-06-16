@@ -1,5 +1,6 @@
 import unittest
 
+
 class PythonTuples(unittest.TestCase):
 	def setUp(self):
 		self.tup1 = ('Google', 'Runoob', 1997, 2000)
@@ -17,8 +18,9 @@ class PythonTuples(unittest.TestCase):
 		self.assertEqual(max(self.tup2), 7)
 		self.assertEqual(min(self.tup2), 1)
 
-		tup = tuple(['Google', 'Taobao', 'Runoob', 'Baidu']) #将列表转换为元组
+		tup = tuple(['Google', 'Taobao', 'Runoob', 'Baidu'])  # 将列表转换为元组
 		self.assertEqual(tup, ('Google', 'Taobao', 'Runoob', 'Baidu'))
+
 
 if __name__ == '__main__':
 	unittest.main()

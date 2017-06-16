@@ -19,16 +19,19 @@ Queue.join() 实际上意味着等到队列为空，再执行别的操作
 
 exitFlag = 0
 
-class myThread(threading.Thread):
+
+class MyThread(threading.Thread):
 	def __init__(self, threadId, name, q):
 		threading.Thread.__init__(self)
 		self.threadId = threadId
 		self.name = name
 		self.q = q
+
 	def run(self):
 		print("开始线程: " + self.name)
 		process_data(self.name, self.q)
 		print("退出线程: " + self.name)
+
 
 def process_data(threadname, q):
 	while not exitFlag:
@@ -40,6 +43,7 @@ def process_data(threadname, q):
 		else:
 			queueLock.release()
 		time.sleep(1)
+
 
 print("module queue: ")
 print(dir(queue))
@@ -53,7 +57,7 @@ thread_id = 1
 
 # 创建新线程
 for name in thread_names:
-	thread = myThread(thread_id, name, workQueue)
+	thread = MyThread(thread_id, name, workQueue)
 	thread.start()
 	threads.append(thread)
 	thread_id += 1

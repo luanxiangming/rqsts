@@ -1,6 +1,7 @@
 import unittest, time, calendar, datetime
 from datetime import date
 
+
 class PythonTime(unittest.TestCase):
 	"""python中时间日期格式化符号：
 	%y 两位数的年份表示（00-99）
@@ -28,23 +29,24 @@ class PythonTime(unittest.TestCase):
 	"""
 
 	''' Time 模块 '''
+
 	def test_time(self):
 		print('module time: ')
 		print(dir(time))
-		print('Ticks from the beginning: ' + str(time.time())) #时间间隔是以秒为单位的浮点小数
-		print('LocalTime: ' + str(time.localtime())) #从返回浮点数的时间辍方式向时间元组转换
-		print('ASCTime: ' + time.asctime(time.localtime())) #接受时间元组并返回一个可读的形式
-		print('CTime: ' + time.ctime()) #等于asctime()
-		print('GMTime: ' + str(time.gmtime())) #接收时间戳并返回格林威治天文时间下的时间元组
+		print('Ticks from the beginning: ' + str(time.time()))  # 时间间隔是以秒为单位的浮点小数
+		print('LocalTime: ' + str(time.localtime()))  # 从返回浮点数的时间辍方式向时间元组转换
+		print('ASCTime: ' + time.asctime(time.localtime()))  # 接受时间元组并返回一个可读的形式
+		print('CTime: ' + time.ctime())  # 等于asctime()
+		print('GMTime: ' + str(time.gmtime()))  # 接收时间戳并返回格林威治天文时间下的时间元组
 
 		''' strftime接收时间元组，并按指定格式返回以可读字符串表示的当地时间 '''
-		print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())) #格式化成2016-03-20 11:45:39
-		print(time.strftime('%a %b %d %H:%M:%S %Y', time.localtime())) #格式化成Sat Mar 28 22:24:24 2016
+		print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))  # 格式化成2016-03-20 11:45:39
+		print(time.strftime('%a %b %d %H:%M:%S %Y', time.localtime()))  # 格式化成Sat Mar 28 22:24:24 2016
 
 		''' 将格式字符串转换为时间戳 '''
 		a = "Sat Mar 28 22:24:24 2016"
-		time_tuple = time.strptime(a, '%a %b %d %H:%M:%S %Y') # strptime根据指定格式把一个时间字符串解析为时间元组
-		time_stamp = time.mktime(time_tuple) # mktime接受时间元组并返回时间戳
+		time_tuple = time.strptime(a, '%a %b %d %H:%M:%S %Y')  # strptime根据指定格式把一个时间字符串解析为时间元组
+		time_stamp = time.mktime(time_tuple)  # mktime接受时间元组并返回时间戳
 		print('mktime: ' + str(time_stamp))
 
 		''' 以浮点数计算的秒数返回当前的CPU时间
@@ -54,11 +56,12 @@ class PythonTime(unittest.TestCase):
 		time.sleep(2)
 		print(time.clock() - t0)
 
-		print('Altzone: ' + str(time.altzone)) #返回格林威治西部的夏令时地区的偏移秒数
-		print('TimeZone: ' + repr(time.timezone)) # 当地时区（未启动夏令时）距离格林威治的偏移秒数
-		print(('TZName: ' + repr(time.tzname))) # 包含一对根据情况的不同而不同的字符串，分别是带夏令时的本地时区名称，和不带的
+		print('Altzone: ' + str(time.altzone))  # 返回格林威治西部的夏令时地区的偏移秒数
+		print('TimeZone: ' + repr(time.timezone))  # 当地时区（未启动夏令时）距离格林威治的偏移秒数
+		print(('TZName: ' + repr(time.tzname)))  # 包含一对根据情况的不同而不同的字符串，分别是带夏令时的本地时区名称，和不带的
 
 	''' 日历（Calendar）模块 '''
+
 	def test_calendar(self):
 		print('module calendar: ')
 		print(dir(calendar))
@@ -73,9 +76,9 @@ class PythonTime(unittest.TestCase):
 		print(calendar.month(2017, 6, 2, 1))
 		print(calendar.month(2017, 7))
 
-		print("1st weekday: " + repr(calendar.firstweekday())) # 返回当前每周起始日期的设置
+		print("1st weekday: " + repr(calendar.firstweekday()))  # 返回当前每周起始日期的设置
 		self.assertFalse(calendar.isleap(2017))
-		self.assertEqual(calendar.leapdays(2010, 2017), 2) #返回在Y1，Y2两年之间的闰年总数。
+		self.assertEqual(calendar.leapdays(2010, 2017), 2)  # 返回在Y1，Y2两年之间的闰年总数。
 
 		''' 返回一个整数的单层嵌套列表。每个子列表装载代表一个星期的整数。Year年month月外的日期都设为0;
 		范围内的日子都由该月第几日表示，从1开始。'''
@@ -92,8 +95,8 @@ class PythonTime(unittest.TestCase):
 		# 返回给定日期的日期码。0（星期一）到6（星期日）。月份为1（一月） 到12（12月）。
 		self.assertEqual(calendar.weekday(2017, 6, 15), 3)
 
-
 	''' 获取昨天日期 '''
+
 	def test_datetime(self):
 		print('module datetime: ')
 		print(dir(datetime))
@@ -110,7 +113,8 @@ class PythonTime(unittest.TestCase):
 		print(date.today().strftime('%d-%m-%y. %d %b %Y is a %a on the %dth day of %B'))
 
 		birthday = date(1983, 7, 14)
-		print(date.today() - birthday) # dates support calendar arithmetic
+		print(date.today() - birthday)  # dates support calendar arithmetic
+
 
 if __name__ == '__main__':
 	unittest.main()

@@ -1,4 +1,6 @@
-import unittest, keyword
+import keyword
+import unittest
+
 
 class PythonBasics(unittest.TestCase):
     

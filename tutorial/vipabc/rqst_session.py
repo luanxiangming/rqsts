@@ -5,7 +5,8 @@ import json
 ''' login -> MyLessons '''
 payload = {'Account': 'usernamem@gmail.com', 'Password': '111111', 'RememberMe': False, 'FromIms': False}
 
-''' This will make sure the session is closed as soon as the with block is exited, even if unhandled exceptions occurred. '''
+'''This will make sure the session is closed as soon as the with block is exited, even if unhandled exceptions 
+occurred. '''
 with requests.Session() as s:
 	try:
 		s.post('http://stage.vipjr.com/Login/NewLogin', data=payload, timeout=5)
@@ -16,10 +17,10 @@ with requests.Session() as s:
 		print("TimeOut..." + "\n\n")
 	else:
 		print("Request headers: ")
-		for k,v in r.request.headers.items():
+		for k, v in r.request.headers.items():
 			print("\t" + k + ": " + v)
 		print("Response headers: ")
-		for k,v in r.headers.items():
+		for k, v in r.headers.items():
 			print("\t" + k + ": " + v)
 		print(r.encoding)
 		print(str(r.status_code))
@@ -49,14 +50,14 @@ r = requests.get(tarball_url, stream=True, timeout=3)
 # At this point only the response headers have been downloaded and the connection remains open
 print(r.headers)
 if int(r.headers['content-length']) < 100:
-  	print(r.text)
+	print(r.text)
 
 ''' Proxies '''
 # To use HTTP Basic Auth with your proxy, use the http://user:password@host/ syntax:
 # proxies = {'http': 'http://user:pass@10.10.1.10:3128/'}
 proxies = {
-  'http': 'http://192.168.23.199:8080',
-  'https': 'http://192.168.23.199:8080',
+	'http': 'http://192.168.23.199:8080',
+	'https': 'http://192.168.23.199:8080',
 }
 try:
 	# Specify a tuple if you would like to seperate the 'connect' and 'read' timeouts:
@@ -69,8 +70,10 @@ else:
 	print(r.text)
 
 ''' HTTP Verbs '''
-r = requests.get('https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad', timeout=3)
-if r.status_code==requests.codes.ok:
+r = requests.get(
+	'https://api.github.com/repos/kennethreitz/requests/git/commits/a050faf084662f3a352dd1a941f2c7c9f886d4ad',
+	timeout=3)
+if r.status_code == requests.codes.ok:
 	print(r.json())
 	print(r.json().keys())
 	print(r.json()['committer'])
@@ -88,6 +91,3 @@ r = requests.get(r.url + u'/comments')
 print(r.json()[2].keys())
 print(r.json()[2][u'body'])
 print(r.json()[2][u'user'][u'login'])
-
-
-

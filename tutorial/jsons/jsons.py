@@ -1,7 +1,8 @@
-import json, unittest
+import json
+import unittest
+
 
 class PythonJson(unittest.TestCase):
-
 	def test_dict_to_json(self):
 		print('module jsons: ')
 		print(dir(json))
@@ -32,6 +33,7 @@ class PythonJson(unittest.TestCase):
 		print('Dict url: ' + repr(dict_str['url']))
 
 	''' 如果你要处理的是文件而不是字符串，你可以使用 json.dump() 和 json.load() 来编码和解码JSON数据 '''
+
 	def test_load_json_file(self):
 		with open('example_for_load.json', 'r') as f:
 			dict_str = json.load(f)
@@ -46,6 +48,7 @@ class PythonJson(unittest.TestCase):
 		with open('example_for_dump.json', 'w') as f:
 			json.dump(data, f)
 		print('Dump JSON file: ' + repr(data))
+
 
 if __name__ == '__main__':
 	unittest.main()

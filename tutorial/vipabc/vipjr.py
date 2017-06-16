@@ -11,6 +11,7 @@ account = 'usernamez@test.com'
 password = '123456'
 brandId = 4
 
+
 def try_post(url, payload, timeout):
 	try:
 		r = requests.post(url, json=payload, timeout=timeout)
@@ -21,8 +22,9 @@ def try_post(url, payload, timeout):
 	else:
 		return r
 
+
 def register(brandId, account, password, gender=1, mobile='111', phone='', SourceType='vipabc-vipabc'):
-	url =  settings.LoginHost + '/loginapi/register'
+	url = settings.LoginHost + '/loginapi/register'
 	cname = account[:account.index(u'@')]
 	print("cname: " + cname)
 	ename = cname
@@ -45,40 +47,44 @@ def register(brandId, account, password, gender=1, mobile='111', phone='', Sourc
 	}
 	r = try_post(url, payload, 10)
 	print(r.text)
-	if r.json()['success']==True:
+	if r.json()['success'] == True:
 		print(account + " --- registered successfully!")
 	else:
 		print(account + " --- registered failed!")
+
 
 def get_checkid(account):
 	url = settings.APIStore + u'/VMD/VipJr.API/api/Client/GetClientBasicInfoByEmail'
 	payload = {'email': account}
 	r = try_post(url, payload, 3)
 	JsonResult = r.json()[u'JsonResult']
-	checkid = JsonResult[JsonResult.index('Randstr')+10: JsonResult.index('Nlevel')-3]
+	checkid = JsonResult[JsonResult.index('Randstr') + 10: JsonResult.index('Nlevel') - 3]
 	return checkid
 
+
 def ActivatingAccount(account):
-	url = settings.APIHost+ u'/Customer/ActivatingAccount'
+	url = settings.APIHost + u'/Customer/ActivatingAccount'
 	checkid = get_checkid(account)
 	print('Checkid: ' + checkid)
 	payload = {'checkid': checkid, 'client': account}
 	r = try_post(url, payload, 10)
 	print(r.text)
-	if r.status_code==requests.codes.ok:
+	if r.status_code == requests.codes.ok:
 		print(account + " --- activated successfully!")
 	else:
 		print(account + " --- activated failed!")
+
 
 def NewLogin(account, password):
 	url = settings.APIHost + u'/Login/NewLogin'
 	payload = {'Account': account, 'Password': password, 'RememberMe': False, 'FromIms': False}
 	r = try_post(url, payload, 5)
 	print(r.json())
-	if r.json()['State']==u'LOGIN_SUCCESS':
+	if r.json()['State'] == u'LOGIN_SUCCESS':
 		print(account + " --- login successfully!")
 	else:
 		print(account + " --- login failed!")
+
 
 register(brandId, account, password)
 ActivatingAccount(account)

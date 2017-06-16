@@ -3,20 +3,23 @@ import unittest, _thread, time, threading, queue
 exitFlag = 0
 
 ''' Python3 多线程 '''
+
+
 class PythonThreads(unittest.TestCase):
-	def setUp(self):
-		pass
-	def tearDown(self):
-		pass
+	@classmethod
+	def setUpClass(cls):
+		print('module _thread: ')
+		print(dir(_thread))
+		print('module threading: ')
+		print(dir(threading))
 
 	def print_time(self, threadName, delay):
 		for i in range(5):
 			time.sleep(delay)
 			print("{}: {}".format(threadName, time.ctime()))
 
+	@unittest.skip
 	def test_thread(self):
-		print('module _thread: ')
-		print(dir(_thread))
 		try:
 			_thread.start_new_thread(self.print_time, ('Thread-1', 2))
 			_thread.start_new_thread(self.print_time, ('Thread-2', 3))
@@ -25,13 +28,12 @@ class PythonThreads(unittest.TestCase):
 		while True:
 			pass
 
-
 	def test_threading_lock(self):
 		threads = []
 
 		# 创建新线程
-		threading1 = myThread('101', 'Threading-1', 1)
-		threading2 = myThread('102', 'Threading-2', 2)
+		threading1 = MyThread('101', 'Threading-1', 1)
+		threading2 = MyThread('102', 'Threading-2', 2)
 
 		# 开启新线程,即调用了线程的 run() 方法
 		threading1.start()
@@ -49,7 +51,7 @@ class PythonThreads(unittest.TestCase):
 		print("退出主线程")
 
 
-class myThread(threading.Thread):
+class MyThread(threading.Thread):
 	threadLock = threading.Lock()
 
 	def __init__(self, threadID, name, interval):
@@ -63,7 +65,7 @@ class myThread(threading.Thread):
 
 		self.threadLock.acquire()  # 获取锁，用于线程同步
 		self.print_time(self.name, self.interval, 5)
-		self.threadLock.release() # 释放锁，开启下一个线程
+		self.threadLock.release()  # 释放锁，开启下一个线程
 
 		print('退出线程: ' + self.name)
 

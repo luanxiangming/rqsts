@@ -7,6 +7,8 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 
 ''' Python3 SMTP发送邮件 '''
+
+
 class PythonSMTPLib(unittest.TestCase):
 	smtp_info = {
 		"hostname": "smtp.qq.com",
@@ -20,7 +22,7 @@ class PythonSMTPLib(unittest.TestCase):
 	}
 
 	@classmethod
-	def setUpClass(self):
+	def setUpClass(cls):
 		# 这里使用SMTP_SSL就是默认使用465端口
 		self.smtpobj = smtplib.SMTP_SSL(self.smtp_info["hostname"], timeout=5)
 		self.smtpobj.set_debuglevel(1)
@@ -28,7 +30,7 @@ class PythonSMTPLib(unittest.TestCase):
 		self.smtpobj.login(self.smtp_info["username"], self.smtp_info["password"])
 
 	@classmethod
-	def tearDownClass(self):
+	def tearDownClass(cls):
 		self.smtpobj.quit()
 
 	def send_email(self, format, subject, content):
@@ -58,6 +60,7 @@ class PythonSMTPLib(unittest.TestCase):
 		self.send_email('html', subject, content)
 
 	''' 发送带附件的邮件 '''
+
 	def test_send_attachment_mail(self):
 		# 创建一个带附件的实例
 		msg = MIMEMultipart()
@@ -85,6 +88,7 @@ class PythonSMTPLib(unittest.TestCase):
 		self.smtpobj.sendmail(self.mail_info["from"], self.mail_info["to"], msg.as_string())
 
 	''' 在 HTML 文本中添加图片 '''
+
 	def test_send_image_mail(self):
 		msg = MIMEMultipart('related')
 		msg['from'] = self.mail_info['from']
@@ -113,6 +117,7 @@ class PythonSMTPLib(unittest.TestCase):
 		msg.attach(msgImage)
 
 		self.smtpobj.sendmail(self.mail_info['from'], self.mail_info['to'], msg.as_string())
+
 
 if __name__ == '__main__':
 	unittest.main()

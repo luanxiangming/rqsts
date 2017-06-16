@@ -1,17 +1,19 @@
 import unittest, os, sys, stat
 
+
 class PythonOS(unittest.TestCase):
 	def setUp(self):
 		self.origin = os.getcwd()
+
 	def tearDown(self):
 		os.chdir(self.origin)
 
 	def test_access(self):
 		# 检验权限模式 os.access(path, mode)
-		self.assertTrue(os.access('tmp/foo.txt', os.F_OK)) #os.F_OK: 作为access()的mode参数，测试path是否存在
-		self.assertTrue(os.access('tmp/foo.txt', os.R_OK)) #os.R_OK: 包含在access()的mode参数中， 测试path是否可读
-		self.assertTrue(os.access('tmp/foo.txt', os.W_OK)) #os.W_OK 包含在access()的mode参数中 ， 测试path是否可写
-		self.assertTrue(os.access('tmp/foo.txt', os.X_OK)) #os.X_OK 包含在access()的mode参数中 ，测试path是否可执行
+		self.assertTrue(os.access('tmp/foo.txt', os.F_OK))  # os.F_OK: 作为access()的mode参数，测试path是否存在
+		self.assertTrue(os.access('tmp/foo.txt', os.R_OK))  # os.R_OK: 包含在access()的mode参数中， 测试path是否可读
+		self.assertTrue(os.access('tmp/foo.txt', os.W_OK))  # os.W_OK 包含在access()的mode参数中 ， 测试path是否可写
+		self.assertTrue(os.access('tmp/foo.txt', os.X_OK))  # os.X_OK 包含在access()的mode参数中 ，测试path是否可执行
 
 	def test_chdir(self):
 		# 改变当前工作目录改变当前工作目录 os.chdir(path)
@@ -22,7 +24,7 @@ class PythonOS(unittest.TestCase):
 		print("改变目录: " + os.getcwd())
 
 	def test_chflags(self):
-		'''flags：
+		"""flags：
 		stat.UF_NODUMP: 非转储文件
 		stat.UF_IMMUTABLE: 文件是只读的
 		stat.UF_APPEND: 文件只能追加内容
@@ -33,13 +35,13 @@ class PythonOS(unittest.TestCase):
 		stat.SF_APPEND: 文件只能追加内容(超级用户可设)
 		stat.SF_NOUNLINK: 文件不可删除(超级用户可设)
 		stat.SF_SNAPSHOT: 快照文件(超级用户可设)
-		'''
-		flags = stat.UF_NOUNLINK # 为文件设置标记，使得它不能被删除
+		"""
+		flags = stat.UF_NOUNLINK  # 为文件设置标记，使得它不能被删除
 		retval = os.chflags('tmp/foo.txt', flags)
 		self.assertIsNone(retval)
 
 	def test_chmod(self):
-		'''
+		"""
 		stat.S_IXOTH: 其他用户有执行权0o001
 		stat.S_IWOTH: 其他用户有写权限0o002
 		stat.S_IROTH: 其他用户有读权限0o004
@@ -57,7 +59,7 @@ class PythonOS(unittest.TestCase):
 		stat.S_ISUID: 执行此文件其进程有效用户为文件所有者0o4000
 		stat.S_IREAD: windows下设为只读
 		stat.S_IWRITE: windows下取消只读
-		'''
+		"""
 		self.assertIsNone(os.chmod('tmp/foo.txt', stat.S_IRWXU))
 
 	def test_chown(self):

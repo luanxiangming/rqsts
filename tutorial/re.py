@@ -1,16 +1,18 @@
-import re, unittest
+import re
+import unittest
+
 
 class PythonRe(unittest.TestCase):
-
 	@classmethod
-	def setUpClass(self):
+	def setUpClass(cls):
 		print('Module Re: ')
 		print(dir(re))
 
 	''' re.match 尝试从字符串的起始位置匹配一个模式 '''
+
 	def test_match(self):
-		self.assertEqual(re.match('www', 'www.google.com').span(), (0, 3)) # 在起始位置匹配
-		self.assertIsNone(re.match('com', 'www.google.com')) # 不在起始位置匹配
+		self.assertEqual(re.match('www', 'www.google.com').span(), (0, 3))  # 在起始位置匹配
+		self.assertIsNone(re.match('com', 'www.google.com'))  # 不在起始位置匹配
 
 		line = 'Cats are smarter than dogs'
 		m = re.match(r'(.*) are (.*?) .*', line)
@@ -20,9 +22,10 @@ class PythonRe(unittest.TestCase):
 		self.assertEqual(m.groups(), ('Cats', 'smarter'))
 
 	''' re.search 扫描整个字符串并返回第一个成功的匹配 '''
+
 	def test_search(self):
-		self.assertEqual(re.search('www', 'www.google.com').span(), (0, 3)) # 在起始位置匹配
-		self.assertEqual(re.search('com', 'www.google.com').span(), (11, 14)) # 不在起始位置匹配
+		self.assertEqual(re.search('www', 'www.google.com').span(), (0, 3))  # 在起始位置匹配
+		self.assertEqual(re.search('com', 'www.google.com').span(), (11, 14))  # 不在起始位置匹配
 
 		line = 'Cats are smarter than dogs'
 		m = re.search(r'(.*) are (.*?) .*', line)
@@ -33,26 +36,27 @@ class PythonRe(unittest.TestCase):
 	'''检索和替换
 	re.sub用于替换字符串中的匹配项
 	re.sub(pattern, repl, string, count=0)'''
+
 	def add_it(self, matched):
 		value = int(matched.group('value'))
 		return str(value + 1)
+
 	def test_sub(self):
 		phone = "2004-959-559 #这是一个电话号码"
-		remove_comment = re.sub('#.*', '', phone) # 删除注释
+		remove_comment = re.sub('#.*', '', phone)  # 删除注释
 		self.assertEqual(remove_comment, '2004-959-559 ')
 
 		remove_space = re.sub('\s', '', remove_comment)
 		self.assertEqual(remove_space, '2004-959-559')
 
-		remove_non_decimal_digit = re.sub('\D', ' ', remove_space) # 移除非数字的内容
+		remove_non_decimal_digit = re.sub('\D', ' ', remove_space)  # 移除非数字的内容
 		self.assertEqual(remove_non_decimal_digit, '2004 959 559')
 
-		add_it = re.sub('(?P<value>\d+)', self.add_it, remove_non_decimal_digit) # 当 repl 参数是一个函数
+		add_it = re.sub('(?P<value>\d+)', self.add_it, remove_non_decimal_digit)  # 当 repl 参数是一个函数
 		self.assertEqual(add_it, '2005 960 560')
 
-
 	def test_flags(self):
-		'''修饰符 - 可选标志
+		"""修饰符 - 可选标志
 		正则表达式可以包含一些可选标志修饰符来控制匹配的模式。修饰符被指定为一个可选的标志
 		re.I	使匹配对大小写不敏感
 		re.L	做本地化识别（locale-aware）匹配
@@ -60,11 +64,11 @@ class PythonRe(unittest.TestCase):
 		re.S	使 . 匹配包括换行在内的所有字符
 		re.U	根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.
 		re.X	该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解。
-		'''
+		"""
 		pass
 
 	def test_model(self):
-		''' 正则表达式模式
+		""" 正则表达式模式
 		^	匹配字符串的开头
 		$	匹配字符串的末尾。
 		.	匹配任意字符，除了换行符，当re.DOTALL标记被指定时，则可以匹配包括换行符的任意字符。
@@ -73,7 +77,7 @@ class PythonRe(unittest.TestCase):
 		re*	匹配0个或多个的表达式。
 		re+	匹配1个或多个的表达式。
 		re?	匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式
-		re{ n}	
+		re{ n}
 		re{ n,}	精确匹配n个前面表达式。
 		re{ n, m}	匹配 n 到 m 次由前面的正则表达式定义的片段，贪婪方式
 		a| b	匹配a或b
@@ -102,9 +106,8 @@ class PythonRe(unittest.TestCase):
 		\n, \t, 等.	匹配一个换行符。匹配一个制表符。等
 		\1...\9	匹配第n个分组的内容。
 		\10	匹配第n个分组的内容，如果它经匹配。否则指的是八进制字符码的表达式。
-		'''
+		"""
 		pass
-
 
 
 if __name__ == '__main__':
