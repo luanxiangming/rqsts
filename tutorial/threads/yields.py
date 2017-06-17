@@ -24,6 +24,6 @@ def f():
 
 
 a = f()
-print('next()返回yield 1的参数: ' + str(next(a)))
+print('next()返回yield 1的参数: ' + str(next(a)))  # send(msg)与next()返回的是下一个yield表达式的参数
 print('next()返回yield 2的参数: ' + str(next(a)))
 a.send('为yield 2赋值')

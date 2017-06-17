@@ -50,14 +50,10 @@ class PythonString(unittest.TestCase):
 
 		self.assertEqual(max('aeiou'), 'u')  # 返回字符串中最大的字母
 		self.assertEqual(min('aeiouV'), 'V')  # 返回字符串中最小的字母
-		self.assertEqual('This is island'.replace('is', 'was', 2),
-		                 'Thwas was island')  # 把将字符串中的str1替换成str2,如果max指定则替换不超过max次
-		self.assertEqual('this is string example'.split('t', 1),
-		                 ['', 'his is string example'])  # 指定分隔符对字符串进行切片,仅分隔num个子字符串
-		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(),
-		                 ['ab c', '', 'de fg', 'kl'])  # 按照行('\r','\r\n',\n')分隔,返回一个包含各行作为元素的列表
-		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(True),
-		                 ['ab c\n', '\n', 'de fg\r', 'kl\r\n'])  # 参数keepends为False,不包含换行符;为True,保留换行符
+		self.assertEqual('This is island'.replace('is', 'was', 2), 'Thwas was island')  # 把将字符串中的str1替换成str2,如果max指定则替换不超过max次
+		self.assertEqual('this is string example'.split('t', 1), ['', 'his is string example'])  # 指定分隔符对字符串进行切片,仅分隔num个子字符串
+		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(), ['ab c', '', 'de fg', 'kl'])  # 按照行('\r','\r\n',\n')分隔,返回一个包含各行作为元素的列表
+		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(True), ['ab c\n', '\n', 'de fg\r', 'kl\r\n'])  # 参数keepends为False,不包含换行符;为True,保留换行符
 		self.assertTrue('this is string'.startswith('th'));
 		self.assertFalse('this is string'.startswith('th', 2))  # 参数beg和end指定值，则在指定范围内检查
 
