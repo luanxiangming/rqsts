@@ -1,0 +1,115 @@
+<!-- <!DOCTYPE html> 声明为 HTML5 文档 -->
+<!DOCTYPE html>
+<!-- <html> 元素是 HTML 页面的根元素 -->
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+    <!-- <title> 元素描述了文档的标题 -->
+    <title>菜鸟教程(runoob.com)</title>
+
+    <!-- <base> 标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接, 以下所有链接会在新窗口打开 -->
+    <base href="" target="_blank">
+
+    <!-- <link> 标签定义了文档与外部资源之间的关系, 通常用于链接到样式表 -->
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+    <!-- <meta> 元素来描述HTML文档的描述，关键词，作者，字符集等 -->
+    <meta name="description" content="免费在线教育">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta charset="UTF-8">
+</head>
+
+
+<!-- <body> 元素包含了可见的页面内容 -->
+<body>
+    <!-- 标题（Heading）是通过 <h1> - <h6> 标签进行定义的. -->
+    <!-- 1到6号标题与1到6号字体逆序对应，比如1号字体对应6号标题，2号字体对应5号标题 -->
+    <h1>我的h1标题</h1>
+    <font size="6">这是6号字体文本</font>
+    <h3>我的h3标题</h3>
+    <font size="4">这是4号字体文本</font>
+    <h6>我的h6标题</h6>
+    <font size="1">这是1号字体文本</font>
+
+    <hr>
+    <!-- 文本格式化 -->
+    <b id="bold">这个文本是加粗(b)的</b><br>
+    <strong>这个文本是加粗(strong)的</strong><br>
+    <big>这个文本字体放大(big)</big><br>
+    <small>这个文本字体缩小(small)</small><br>
+    <em>这个文本是斜体(em)</em><br>
+    <i>这个文本是斜体(i)</i><br>
+    <sub>下标(sub)</sub>文本<br>
+    <sup>上标(sup)</sup>文本<br>
+
+    <hr>
+    <!-- 预格式文本 -->
+    <pre>
+        此例演示如何使用 pre 标签
+        对空行和    空格
+
+        进行控制
+    </pre>
+
+    <hr>
+    <!-- 这些标签常用于显示计算机/编程代码 -->
+    <code>计算机输出</code><br>
+    <kbd>键盘输入</kbd><br>
+    <tt>打字机文本</tt><br>
+    <samp>计算机代码样本</samp><br>
+    <var>计算机变量</var><br>
+
+    <hr>
+    <!-- 地址 -->
+    <address>
+        Written by <a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
+        Visit us at:<br>
+        Example.com<br>
+        Box 564, Disneyland<br>
+        USA
+    </address>
+
+    <hr>
+    <!-- 缩写和首字母缩写 -->
+    <abbr title="完整版本(abbr)">鼠标移至这里(abbr)</abbr><br>
+    <acronym title="完整版本(acronym)">鼠标移至这里(acronym)</acronym><br>
+
+
+    <hr>
+    <!-- <p> 元素定义一个段落, 浏览器会自动地在段落的前后添加空行。（</p> 是块级元素） -->
+    <!-- HTML 超链接（链接）-->
+    <p>我的第一个段落(p)</p>
+    <a href="http://www.runoob.com">打开链接</a><br>
+    <a id="runoob" href="" target="_blank">新窗口打开链接</a><br>
+    <a href="#runoob">根据id重用上面的链接</a><br>
+    <!-- 图片链接， src是head部分base标签的相对路径 -->
+    <a href="http://www.runoob.com"><img src="http://www.runoob.com/images/logo.png" width="128" height="32">图片链接</a><br>
+    <a href="#bold">在当前页面链接到加粗文本(b)</a><br>
+    <a href="http://www.runoob.com" target="_top">点击这里跳出框架</a><br>
+    <!-- 单词之间空格使用 %20 代替，以确保浏览器可以正常显示文本 -->
+    <a href="mailto:xiangming.luan@gmail.com?subject=hi%20xiangming">点我发邮件</a>
+
+    <hr>
+    <!-- 文字方向, <bdo> 标签用来覆盖默认的文本方向 -->
+    <p>顺序显示段落</p>
+    <p><bdo dir="">反向显示段落</bdo></p>
+
+    <hr>
+    <!-- 块引用 -->
+    <p>WWF's goal is to:
+        <q>Build a future where people live in harmony with nature.</q>
+        We hope they succeed.</p>
+
+    <hr>
+    <!-- 删除/插入字效果 -->
+    <p>The color is <del>red</del> <ins>blue</ins></p>
+
+    <!-- <hr> 标签在 HTML 页面中创建水平线。 -->
+    <hr>
+    <img src="https://avatars2.githubusercontent.com/u/13734259?v=3&s=460" width="230" height="230">
+</body>
+
+
+</html>

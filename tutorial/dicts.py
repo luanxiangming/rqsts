@@ -1,4 +1,5 @@
 import unittest
+from collections import defaultdict
 
 
 class PythonDicts(unittest.TestCase):
@@ -10,9 +11,9 @@ class PythonDicts(unittest.TestCase):
 		self.dict1 = {}
 
 	def test_update(self):
-		self.dict1['Age'] = 17;
+		self.dict1['Age'] = 17
 		self.dict1['School'] = 'Harvard'
-		self.assertEqual(self.dict1['Age'], 17);
+		self.assertEqual(self.dict1['Age'], 17)
 		self.assertEqual(self.dict1['School'], 'Harvard')
 
 	def test_del(self):
@@ -26,7 +27,7 @@ class PythonDicts(unittest.TestCase):
 		# dict2是dict1的引用（别名），所以输出结果都是一致的，dict3父对象进行了深拷贝，不会随dict1修改而修改，子对象是浅拷贝所以随dict1的修改而修改
 		dict2 = self.dict1
 		dict3 = self.dict1.copy()
-		self.dict1['Age'] = 8;
+		self.dict1['Age'] = 8
 		self.dict1['Class'] = 'Second'
 		self.assertEqual(self.dict1, {'Name': 'Runoob', 'Age': 8, 'Class': 'Second'})
 		self.assertEqual(dict2, {'Name': 'Runoob', 'Age': 8, 'Class': 'Second'})
@@ -40,10 +41,11 @@ class PythonDicts(unittest.TestCase):
 		self.assertEqual(dict_, {'name': 10, 'age': 10, 'sex': 10})
 
 		# 返回指定键的值，如果值不在字典中返回默认值None
-		self.assertEqual(self.dict2.get('Name'), 'Python');
+		self.assertEqual(self.dict2.get('Name'), 'Python')
+		self.assertEqual(self.dict2.get('Sex'), None)
 		self.assertEqual(self.dict2.get('Sex', 'male'), 'male')
-		# setdefault() 方法和get()方法类似, 如果键不已经存在于字典中，将会添加键并将值设为默认值
-		self.assertEqual(self.dict2.setdefault('Name'), 'Python');
+		# setdefault() 方法和get()方法类似, 如果键不存在于字典中，将会添加键并将值设为默认值
+		self.assertEqual(self.dict2.setdefault('Name'), 'Python')
 		self.assertEqual(self.dict2.setdefault('School', 'Harvard'), 'Harvard')
 		self.assertTrue('Name' in self.dict2)  # 判断键是否存在于字典中
 		print("Dict items: " + str(self.dict2.items()))  # 以列表返回可遍历的(键, 值) 元组数组
@@ -54,6 +56,20 @@ class PythonDicts(unittest.TestCase):
 		dict_.update(self.dict2)  # 把字典dict2的键/值对更新到dict_里
 		self.assertEqual(dict_, {'Name': 'Python', 'School': 'Harvard', 'nation': 'CN'})
 
+	''' 初始化字典 '''
+
+	def test_defaultdict(self):
+		print('module defaultdict: ')
+		print(dir(defaultdict))
+		d = defaultdict(lambda: 100)
+		self.assertEqual(d.default_factory(), 100)
+		self.assertEqual(d['a'], 100)
+
+	def test_merge_dict(self):
+		new_merge = {**self.dict1, **self.dict2}  # Python 3.5
+		old_merge = self.dict1.copy()
+		old_merge.update(self.dict2)
+		self.assertEqual(new_merge, old_merge)
 
 if __name__ == '__main__':
 	unittest.main()

@@ -1,6 +1,7 @@
 import unittest, os, shutil, glob, sys, re, math, random, zlib, doctest
 from urllib import request
 from timeit import Timer
+import timeit
 
 
 class PythonStdLib(unittest.TestCase):
@@ -107,11 +108,13 @@ class PythonStdLib(unittest.TestCase):
 
 	# 相对于 timeit 的细粒度，:mod:profile 和 pstats 模块提供了针对更大代码块的时间度量工具
 	def test_timer(self):
+		print('module timeit: ')
+		print(dir(timeit))
 		print('module timer: ')
 		print(dir(Timer))
 		old = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
-		new = Timer('a,b=b,a', 'a=1;b=2').timeit()
-		self.assertLess(new, old)
+		new = timeit.repeat('a,b=b,a', 'a=1;b=2')
+		self.assertLess(min(new), old)
 
 	def test_doctest(self):
 		print('module doctest: ')
