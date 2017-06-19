@@ -7,18 +7,30 @@
 <head>
 <meta charset="UTF-8">
     <!-- <title> 元素描述了文档的标题 -->
-    <title>菜鸟教程(runoob.com)</title>
+    <title>教程(runoob.com)</title>
 
     <!-- <base> 标签描述了基本的链接地址/链接目标，该标签作为HTML文档中所有的链接标签的默认链接, 以下所有链接会在新窗口打开 -->
     <base href="" target="_blank">
 
-    <!-- <link> 标签定义了文档与外部资源之间的关系, 通常用于链接到样式表 -->
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <!-- css外部样式表, <link> 标签定义了文档与外部资源之间的关系, 通常用于链接到样式表 -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
 
     <!-- <meta> 元素来描述HTML文档的描述，关键词，作者，字符集等 -->
     <meta name="description" content="免费在线教育">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta charset="UTF-8">
+
+    <!-- css内部样式表, 当单个文件需要特别样式时，就可以使用内部样式表-->
+    <style type="text/css">
+        body {background-color: chartreuse}
+        h1 {color: red}
+        p {color: blue}
+    </style>
+
+    <!-- css添加到 <head> 部分的样式信息对 HTML 进行格式化, 标签链接到一个外部样式表 -->
+    <style type="text/css" rel="stylesheet" href="styles.css">
+
+    </style>
 </head>
 
 
@@ -32,8 +44,8 @@
     <font size="4">这是4号字体文本</font>
     <h6>我的h6标题</h6>
     <font size="1">这是1号字体文本</font>
-
     <hr>
+
     <!-- 文本格式化 -->
     <b id="bold">这个文本是加粗(b)的</b><br>
     <strong>这个文本是加粗(strong)的</strong><br>
@@ -43,8 +55,9 @@
     <i>这个文本是斜体(i)</i><br>
     <sub>下标(sub)</sub>文本<br>
     <sup>上标(sup)</sup>文本<br>
-
     <hr>
+
+
     <!-- 预格式文本 -->
     <pre>
         此例演示如何使用 pre 标签
@@ -52,16 +65,16 @@
 
         进行控制
     </pre>
-
     <hr>
+
     <!-- 这些标签常用于显示计算机/编程代码 -->
     <code>计算机输出</code><br>
     <kbd>键盘输入</kbd><br>
     <tt>打字机文本</tt><br>
     <samp>计算机代码样本</samp><br>
     <var>计算机变量</var><br>
-
     <hr>
+
     <!-- 地址 -->
     <address>
         Written by <a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
@@ -70,18 +83,18 @@
         Box 564, Disneyland<br>
         USA
     </address>
-
     <hr>
+
     <!-- 缩写和首字母缩写 -->
     <abbr title="完整版本(abbr)">鼠标移至这里(abbr)</abbr><br>
     <acronym title="完整版本(acronym)">鼠标移至这里(acronym)</acronym><br>
-
-
     <hr>
+
     <!-- <p> 元素定义一个段落, 浏览器会自动地在段落的前后添加空行。（</p> 是块级元素） -->
     <!-- HTML 超链接（链接）-->
     <p>我的第一个段落(p)</p>
-    <a href="http://www.runoob.com">打开链接</a><br>
+    <!-- 使用 style 属性制作一个没有下划线的链接 -->
+    <a href="http://www.runoob.com" style="text-decoration: none">打开没有下划线的链接</a><br>
     <a id="runoob" href="" target="_blank">新窗口打开链接</a><br>
     <a href="#runoob">根据id重用上面的链接</a><br>
     <!-- 图片链接， src是head部分base标签的相对路径 -->
@@ -90,25 +103,111 @@
     <a href="http://www.runoob.com" target="_top">点击这里跳出框架</a><br>
     <!-- 单词之间空格使用 %20 代替，以确保浏览器可以正常显示文本 -->
     <a href="mailto:xiangming.luan@gmail.com?subject=hi%20xiangming">点我发邮件</a>
-
     <hr>
+
     <!-- 文字方向, <bdo> 标签用来覆盖默认的文本方向 -->
     <p>顺序显示段落</p>
     <p><bdo dir="">反向显示段落</bdo></p>
-
     <hr>
-    <!-- 块引用 -->
-    <p>WWF's goal is to:
+
+     <!-- 块引用 -->
+    <p>The goal is to:
         <q>Build a future where people live in harmony with nature.</q>
         We hope they succeed.</p>
-
     <hr>
+
     <!-- 删除/插入字效果 -->
     <p>The color is <del>red</del> <ins>blue</ins></p>
-
-    <!-- <hr> 标签在 HTML 页面中创建水平线。 -->
     <hr>
-    <img src="https://avatars2.githubusercontent.com/u/13734259?v=3&s=460" width="230" height="230">
+
+    <!-- css内联样式 -->
+    <p style="color: brown; margin-left: 20px">css内联样式: 颜色; 左外边距</p>
+    <h2 style="font-size: 20px;font-family: Verdana;text-align: center">css内联样式: 字体, 字体大小, 文本对齐方式</h2>
+    <hr>
+
+    <!-- 图像, <img> 是空标签，只包含属性，并且没有闭合标签. alt属性用来为图像定义一串预备的可替换的文本 -->
+    <img src="https://avatars2.githubusercontent.com/u/13734259?v=3&s=460" alt="face" width="230" height="230">
+    <!-- 使图片浮动至段落的左边或右边 -->
+    <img src="http://www.runoob.com/images/logo.png" width="128" height="32" style="float: right">
+    <!-- 创建图像映射, 可供点击区域的图像地图。其中的每个区域都是一个超级链接 -->
+    <img src="http://www.runoob.com/try/demo_source/planets.gif" usemap="#planetmap" alt="Planets" width="145" height="126">
+    <map name="planetmap">
+        <area shape="rect" coords="0,0,82,126" alt="sun" href="http://www.runoob.com/images/sun.gif">
+        <area shape="circle" coords="90,58,3" alt="mercury" href="http://www.runoob.com/try/demo_source/mercur.htm">
+        <area shape="circle" coords="124,58,8" alt="venus" href="http://www.runoob.com/try/demo_source/venus.htm">
+    </map>
+    <hr>
+
+    <!-- 表格: 边框3, 单元格边距10, 单元格间距5 -->
+    <table border="3" cellpadding="10" cellspacing="5">
+        <caption>表格的标题</caption>
+        <tr>
+            <!-- 水平标题 -->
+            <th>HEADER 1</th>
+            <!-- 横向合并单元格 -->
+            <th colspan="2">HEADER 2</th>
+        </tr>
+        <tr>
+            <!-- 垂直标题 -->
+            <!-- 纵向合并列单元格 -->
+            <th rowspan="2">ROW 1</th>
+            <td>row1 cell1</td>
+            <td>row1 cell2</td>
+        </tr>
+        <tr>
+            <td>row1 cell3</td>
+            <td>row1 cell4</td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <th>ROW 2</th>
+            <!-- 单元格包含一个列表 -->
+            <td>
+                <li>单元格里的列表</li>
+                <li>单元格里的列表</li>
+            </td>
+            <!-- 单元格包含一个表格 -->
+            <td>
+                <table border="1">
+                    <tr>
+                        <th>SUB-ROW 1</th>
+                        <td>cell1</td>
+                    </tr>
+                    <tr>
+                        <th>SUB-ROW 2</th>
+                        <td>cell2</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <hr>
+
+    <!-- 列表: 支持有序<ol>、无序<ul>和自定义列表 -->
+    <h5>无序列表:</h5>
+    <ul>
+        <li>Python</li>
+        <li>Java</li>
+    </ul>
+    <h5>有序列表:</h5>
+    <ol start="10">
+        <li>C</li>
+        <li>C++</li>
+    </ol>
+    <h5>自定义列表:</h5>
+    <dl>
+        <dt>Python</dt>
+        <dd>Python是一种面向对象的解释型计算机程序设计语言，由荷兰人Guido van Rossum于1989年发明，第一个公开发行版发行于1991年。</dd>
+        <dt>Java</dt>
+        <dd>Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。</dd>
+    </dl>
+    <hr>
+
+
+
+
 </body>
 
 
