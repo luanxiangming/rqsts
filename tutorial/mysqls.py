@@ -13,7 +13,7 @@ class PythonMySQL(unittest.TestCase):
 
 	@classmethod
 	def setUpClass(self):
-		''' 数据库连接 '''
+		""" 数据库连接 """
 		self.conn = pymysql.connect(
 			host=self.HOST,
 			port=self.PORT,
@@ -60,9 +60,8 @@ class PythonMySQL(unittest.TestCase):
 	''' 数据库插入操作 '''
 
 	def test_insert_table(self):
-		sql_insert = '''INSERT INTO {}(FIRST_NAME,
- 						LAST_NAME, AGE, SEX, INCOME) 
- 						VALUES ("Adam", "Smith", 1000, "M", 3000)'''.format(self.TB)
+		sql_insert = '''INSERT INTO {}(FIRST_NAME, LAST_NAME, AGE, SEX, INCOME) 
+						VALUES ("Adam", "Smith", 1000, "M", 3000)'''.format(self.TB)
 		try:
 			self.cursor.execute(sql_insert)  # 执行SQL语句
 			self.conn.commit()  # 向数据库提交

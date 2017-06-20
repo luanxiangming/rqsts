@@ -16,41 +16,41 @@ logging.basicConfig(level=logging.DEBUG,
 
 
 def check_inout(inout):
-	time.sleep(random.randint(60, 600))
-	for card_number in card_numbers:
-		payload = {'card_number': card_number, 'inout': inout, 'handlerName': 'Index.Index', 'method': 'Check_InOUT'}
-		try:
-			r = requests.post(url, data=payload, timeout=3)
-		except requests.ConnectionError:
-			logging.info("ConnectionError..." + "\n\n")
-		except requests.Timeout:
-			logging.info("TimeOut..." + "\n\n")
-		else:
-			logging.info(r.text)
-			if inout == 1 and r.status_code == requests.codes.ok:
-				logging.info("Check In Succeed." + "\n\n")
-			elif inout == 0 and r.status_code == requests.codes.ok:
-				logging.info("Check Out Succeed." + "\n\n")
+    time.sleep(random.randint(60, 600))
+    for card_number in card_numbers:
+        payload = {'card_number': card_number, 'inout': inout, 'handlerName': 'Index.Index', 'method': 'Check_InOUT'}
+        try:
+            r = requests.post(url, data=payload, timeout=3)
+        except requests.ConnectionError:
+            logging.info("ConnectionError..." + "\n\n")
+        except requests.Timeout:
+            logging.info("TimeOut..." + "\n\n")
+        else:
+            logging.info(r.text)
+            if inout == 1 and r.status_code == requests.codes.ok:
+                logging.info("Check In Succeed." + "\n\n")
+            elif inout == 0 and r.status_code == requests.codes.ok:
+                logging.info("Check Out Succeed." + "\n\n")
 
 
 def is_weekend():
-	day = time.strftime('%w')
-	if day in ['0', '6']:
-		return True
-	return False
+    day = time.strftime('%w')
+    if day in ['0', '6']:
+        return True
+    return False
 
 
 def check_in_out():
-	if not (is_weekend()):
-		hour = time.strftime('%H')
-		if int(hour) <= 12:
-			check_inout(1)
-		# mail.send_mail('签入成功', '签入成功')
-		else:
-			check_inout(0)
-		# mail.send_mail('签出成功', '签出成功')
-	else:
-		logging.warning("It's weekend.")
+    if not (is_weekend()):
+        hour = time.strftime('%H')
+        if int(hour) <= 12:
+            check_inout(1)
+        # mail.send_mail('签入成功', '签入成功')
+        else:
+            check_inout(0)
+        # mail.send_mail('签出成功', '签出成功')
+    else:
+        logging.warning("It's weekend.")
 
 
 check_in_out()
