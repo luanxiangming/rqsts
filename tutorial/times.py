@@ -34,7 +34,7 @@ class PythonTime(unittest.TestCase):
 		print('module time: ')
 		print(dir(time))
 		print('Ticks from the beginning: ' + str(time.time()))  # 时间间隔是以秒为单位的浮点小数
-		print('LocalTime: ' + str(time.localtime()))  # 从返回浮点数的时间辍方式向时间元组转换
+		print('LocalTime: ' + str(time.localtime()))  # 从返回浮点数的时间戳方式向时间元组转换
 		print('ASCTime: ' + time.asctime(time.localtime()))  # 接受时间元组并返回一个可读的形式
 		print('CTime: ' + time.ctime())  # 等于asctime()
 		print('GMTime: ' + str(time.gmtime()))  # 接收时间戳并返回格林威治天文时间下的时间元组

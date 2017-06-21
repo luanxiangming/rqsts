@@ -1,4 +1,5 @@
 import unittest
+from collections import deque
 
 
 class PythonLists(unittest.TestCase):
@@ -42,9 +43,9 @@ class PythonLists(unittest.TestCase):
 		self.list3.insert(1, 'Baidu')
 		self.assertEqual(self.list3, ['Google', 'Baidu', 'Runoob', 'Zoo', 'Carpenter'])
 
-		self.list3.pop();
+		self.list3.pop()
 		self.assertEqual(self.list3, ['Google', 'Baidu', 'Runoob', 'Zoo'])  # 用于移除列表中的一个元素（默认最后一个元素）,并且返回该元素的值
-		self.list3.pop(0);
+		self.list3.pop(0)
 		self.assertEqual(self.list3, ['Baidu', 'Runoob', 'Zoo'])
 
 		self.list3.remove('Baidu')  # 用于移除列表中某个值的第一个匹配项
@@ -61,6 +62,25 @@ class PythonLists(unittest.TestCase):
 
 		list_ = self.list2.copy()  # 用于复制列表，类似于 a[:]
 		self.assertEqual(self.list2, list_)
+
+	def test_enumerate(self):
+		""" 带索引位置的集合遍历 """
+		for i, name in enumerate(self.list3):
+			print(i, name)
+
+	def test_deque(self):
+		""" 双向队列数据结构 """
+		print('module deque: ')
+		print(dir(deque))
+
+		deq = deque(self.list1)
+		self.assertEqual(deq.pop(), 2000)
+		self.assertEqual(deq.popleft(), 'Google')
+
+		deq.append(2001)
+		self.assertEqual(deq, deque(['Runoob', 1997, 2001]))
+		deq.appendleft('Baidu')
+		self.assertEqual(deq, deque(['Baidu', 'Runoob', 1997, 2001]))
 
 
 if __name__ == '__main__':
