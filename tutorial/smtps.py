@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
 
-import smtplib, unittest
-from email.mime.text import MIMEText
+import smtplib
+import unittest
+from email.header import Header
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
-from email.header import Header
+from email.mime.text import MIMEText
 
 ''' Python3 SMTP发送邮件 '''
 
