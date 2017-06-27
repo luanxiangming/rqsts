@@ -11,7 +11,14 @@ def test_mutable_args():
 def test_lambda():
 	sum = lambda arg1, arg2: arg1 + arg2
 	# self.assertEqual(sum(10, 20), 30)
-	print(sum)
+	print('sum: ' + str(sum))
+	print('sum(1, 10): ' + str(sum(1, 10)))
+
+	# 排序函数sorted()可以接收一个函数作为参数
+	list_ = [-2, -4, -3, 1]
+	print(list(sorted(list_, key=lambda x: abs(x))))
+	list_ = [['a', 85], ['b', 70], ['d', 90], ['e', 100]]
+	print(list(sorted(list_, key=lambda x: x[1], reverse=True)))
 
 
 # 当内部作用域想修改外部作用域的变量时，就要用到global和nonlocal关键字了

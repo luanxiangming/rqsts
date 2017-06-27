@@ -3,6 +3,7 @@ from tutorial import *
 import doctest
 
 functions.print_info(1, 2, 3)
+functions.test_lambda()
 ''' 模块定义 '''
 print('模块basics定义：' + str(dir(basics)))
 print('module name: ' + basics.__name__)
