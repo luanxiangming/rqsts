@@ -3,7 +3,7 @@ import threading
 import time
 
 """
-线程优先级队列（ Queue）
+线程优先级队列（Queue）
 Python 的 Queue 模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列 PriorityQueue。
 这些队列都实现了锁原语，能够在多线程中直接使用，可以使用队列来实现线程间的同步。
 Queue 模块中的常用方法:
