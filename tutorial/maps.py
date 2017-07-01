@@ -6,11 +6,11 @@ class PythonMaps(unittest.TestCase):
 
 	@staticmethod
 	def add100(x):
-		return x+100
+		return x + 100
 
 	@staticmethod
 	def abc(a, b, c):
-		return a*100+b*10+c
+		return a * 100 + b * 10 + c
 
 	def test_single_arg(self):
 		""" 对可迭代函数'iterable'中的每一个元素应用‘function’方法

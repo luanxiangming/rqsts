@@ -104,8 +104,10 @@ class PythonItertools(unittest.TestCase):
 		it = itertools.repeat('L', 3)  # repeat()把一个元素无限重复下去，第二个参数就可以限定重复次数
 		self.assertEqual(list(it), ['L', 'L', 'L'])
 
-	'''对于无限迭代, 可以通过takewhile()
-	等函数根据条件判断来截取出一个有限的序列'''
+	"""
+	对于无限迭代, 可以通过takewhile()
+	等函数根据条件判断来截取出一个有限的序列
+	"""
 
 	def test_takewhile(self):
 		naturals = itertools.count(1)
@@ -116,49 +118,49 @@ class PythonItertools(unittest.TestCase):
 		it = itertools.dropwhile(lambda x: x < 5, [1, 3, 7, 1, 3])  # 当函数返回False时，跳过元素。一旦函数返回True，则开始收集剩下的所有元素到循环器
 		self.assertEqual(list(it), [7, 1, 3])
 
-	''' 函数式工具: 这些函数接收函数作为参数，并将结果返回为一个循环器 '''
-
 	def test_starmap(self):
+		""" 函数式工具: 这些函数接收函数作为参数，并将结果返回为一个循环器 """
 		it = itertools.starmap(pow, [(1, 1), (2, 2), (3, 3)])  # pow将依次作用于表的每个tuple
 		self.assertEqual(list(it), [1, 4, 27])
 
-	''' chain()可以把一组迭代对象串联起来，形成一个更大的迭代器 '''
-
 	def test_chain(self):
+		""" chain()可以把一组迭代对象串联起来，形成一个更大的迭代器 """
 		it = itertools.chain('ABC', 'def')
 		self.assertEqual(list(it), ['A', 'B', 'C', 'd', 'e', 'f'])
 
-	''' 多个循环器集合的笛卡尔积。相当于嵌套循环 '''
-
 	def test_product(self):
+		""" 多个循环器集合的笛卡尔积。相当于嵌套循环 """
 		it = itertools.product('ab', [1, 2])
 		self.assertEqual(list(it), [('a', 1), ('a', 2), ('b', 1), ('b', 2)])
 
-	''' 从'abc'中挑选两个元素，比如ab, bc, ... 将所有结果排序，返回为新的循环器 '''
-
 	def test_combinations(self):
+		""" 从'abc'中挑选两个元素，比如ab, bc, ... 将所有结果排序，返回为新的循环器 """
 		it = itertools.combinations('abc', 2)
 		self.assertEqual(list(it), [('a', 'b'), ('a', 'c'), ('b', 'c')])
 
-	''' 把迭代器中相邻的重复元素挑出来放在一起 '''
-
 	def test_groupby(self):
+		""" 把迭代器中相邻的重复元素挑出来放在一起 """
 		s = sorted('cBAaAbccC', key=lambda a: a.upper())  # 分组之前需要使用sorted()对原循环器的元素，根据key函数进行排序，让同组元素先在位置上靠拢
 		for key, values in itertools.groupby(s, lambda a: a.upper()):  # 忽略大小写分组，就可以让元素'A'和'a'都返回相同的key
 			print(key, list(values))
 
-	''' 根据[1, 0, 1, 0, 0, 1]的真假值情况，选择第一个参数'ABCD'中的元素。P, t, n '''
-
 	def test_compress(self):
+		""" 根据[1, 0, 1, 0, 0, 1]的真假值情况，选择第一个参数'ABCD'中的元素。P, t, n """
 		it = itertools.compress('Python', [1, 0, 1, 0, 0, 1])
 		self.assertEqual(list(it), ['P', 't', 'n'])
 
-	''' 类似于slice()函数，只是返回的是一个循环器 '''
-
 	def test_islice(self):
+		""" 类似于slice()函数，只是返回的是一个循环器 """
 		infinite = itertools.cycle('Python')
 		finite = itertools.islice(infinite, 0, 7)  # 从无限序列中生成有限序列
 		self.assertEqual(list(finite), ['P', 'y', 't', 'h', 'o', 'n', 'P'])
+
+	def test_accumulate(self):
+		""" accumulate迭代器（Python3 中提供）返回累加之和或者两个函数（开发者可以传递给accumulate）的累计结果，accumulate的默认操作是相加，
+		如下，首先我们引入accumulate方法，然后传递给它1-5这个序列，它就会将它们依次相加，例如第一个是0,第二个是0+1,第三个是1+2
+		"""
+		accumulated_list = itertools.accumulate([1, 2, 3, 4, 5])
+		self.assertEqual(list(accumulated_list), [1, 3, 6, 10, 15])
 
 	class Fib:
 		def __init__(self):
