@@ -1,4 +1,8 @@
-import unittest, pickle
+import glob
+import itertools
+import os
+import pickle
+import unittest
 
 
 class PythonFiles(unittest.TestCase):
@@ -71,17 +75,45 @@ class PythonFiles(unittest.TestCase):
 			f.seek(0, 2)  # 在文件末尾写入一行
 			f.write('Additional line\n')
 
-	'''
-	writelines() 方法用于向文件中写入一序列的字符串。
-	这一序列字符串可以是由迭代对象产生的，如一个字符串列表。
-	换行需要制定换行符 \n。
-	'''
-
 	def test_write_lines(self):
+		"""
+		writelines() 方法用于向文件中写入一序列的字符串。
+		这一序列字符串可以是由迭代对象产生的，如一个字符串列表。
+		换行需要制定换行符 \n。
+		"""
 		with open('tmp/foo.txt', 'r+') as f:
 			seq = ['write\n', 'lines']
 			f.seek(0, 2)
 			f.writelines(seq)
+
+	def test_glob(self):
+		"""
+		glob()函数是一个更强大版本的listdir()函数。它可以让你通过使用模式匹配来搜索文件
+		"""
+		files = glob.glob("*.py")
+		print("Glob pattern: " + str(files))
+
+	@staticmethod
+	def multiple_glob(*patterns):
+		return itertools.chain.from_iterable(glob.glob(pattern) for pattern in patterns)
+
+	def test_multiple_glob(self):
+		it = self.multiple_glob("*.py", "*.txt")
+		for file in list(it):
+			print("Glob patterns: " + os.path.realpath(file))
+
+	def test_serialize(self):
+		print("***** module pickle *****")
+		print(dir(pickle))
+
+		var = [1, 'Python', [1.01, 'abc'], ('a', 'b')]
+		serialized_var = pickle.dumps(var)
+		with open('tmp/serial.txt', 'wb')as f:
+			f.write(serialized_var)
+
+	def test_deserialize(self):
+		with open("tmp/serial.txt", "rb") as f:
+			print(pickle.load(f))
 
 
 if __name__ == '__main__':
