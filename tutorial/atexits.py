@@ -24,6 +24,7 @@ def shutdown():
 	print('Execution took: {}'.format(start_time))
 
 
-start_time = micro_time()  # step1
-atexit.register(micro_time, True)  # step3
-atexit.register(shutdown)  # step2
+if __name__ == '__main__':
+	start_time = micro_time()  # step1
+	atexit.register(micro_time, True)  # step3
+	atexit.register(shutdown)  # step2

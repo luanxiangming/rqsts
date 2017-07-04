@@ -1,5 +1,6 @@
 import unittest
 from collections import defaultdict
+import timeit
 
 
 class PythonDicts(unittest.TestCase):
@@ -62,7 +63,7 @@ class PythonDicts(unittest.TestCase):
 		print('module defaultdict: ')
 		print(dir(defaultdict))
 		d = defaultdict(lambda: 100)
-		self.assertEqual(d.default_factory(), 100)
+		self.assertEqual(d.default_factory(), 100)  # value就是default_factory返回的值，剩下的参数和dict()函数接收的参数一样
 		self.assertEqual(d['a'], 100)
 
 	def test_merge_dict(self):
@@ -70,6 +71,16 @@ class PythonDicts(unittest.TestCase):
 		old_merge = self.dict1.copy()
 		old_merge.update(self.dict2)
 		self.assertEqual(new_merge, old_merge)
+
+		print('lambda: {**self.dict1, **self.dict2}')
+		print(min(timeit.repeat(lambda: {**self.dict1, **self.dict2})))
+
+		print('lambda: {k: v for d in (self.dict1, self.dict2) for k, v in d.items()}')
+		print(min(timeit.repeat(lambda: {k: v for d in (self.dict1, self.dict2) for k, v in d.items()})))
+
+		print('lambda: dict((k, v) for d in (self.dict1, self.dict2) for k, v in d.items()')
+		print(min(timeit.repeat(lambda: dict((k, v) for d in (self.dict1, self.dict2) for k, v in d.items()))))
+
 
 if __name__ == '__main__':
 	unittest.main()

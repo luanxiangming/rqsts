@@ -7,10 +7,10 @@ from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-''' Python3 SMTP发送邮件 '''
-
 
 class PythonSMTPLib(unittest.TestCase):
+	""" Python3 SMTP发送邮件 """
+
 	smtp_info = {
 		"hostname": "smtp.qq.com",
 		"username": "82740301@qq.com",
@@ -60,11 +60,9 @@ class PythonSMTPLib(unittest.TestCase):
 		subject = 'Python smtp testing with html content'
 		self.send_email('html', subject, content)
 
-	''' 发送带附件的邮件 '''
-
 	def test_send_attachment_mail(self):
-		# 创建一个带附件的实例
-		msg = MIMEMultipart()
+		""" 发送带附件的邮件 """
+		msg = MIMEMultipart()  # 创建一个带附件的实例
 		msg['from'] = self.mail_info['from']
 		msg['to'] = self.mail_info['to']
 		subject = 'Python smtp testing with attached content'
@@ -88,9 +86,8 @@ class PythonSMTPLib(unittest.TestCase):
 
 		self.smtpobj.sendmail(self.mail_info["from"], self.mail_info["to"], msg.as_string())
 
-	''' 在 HTML 文本中添加图片 '''
-
 	def test_send_image_mail(self):
+		""" 在 HTML 文本中添加图片 """
 		msg = MIMEMultipart('related')
 		msg['from'] = self.mail_info['from']
 		msg['to'] = self.mail_info['to']

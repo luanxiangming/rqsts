@@ -114,6 +114,8 @@ class PythonStdLib(unittest.TestCase):
 		print(dir(Timer))
 		old = Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
 		new = timeit.repeat('a,b=b,a', 'a=1;b=2')
+		print('old: ' + str(old))
+		print('new: ' + str(new))
 		self.assertLess(min(new), old)
 
 	def test_doctest(self):
