@@ -29,5 +29,5 @@ def produce(c):
 	c.close()  # 8.通过c.close()关闭consumer，整个过程结束
 
 
-c = consumer()   # 并不会启动生成器, 只是将c变为一个生成器
-produce(c)
+c = consumer()  # 并不会启动生成器, 只是将c变为一个生成器
+produce(c)  # 协程处GEN_CREATE（等待开始状态）
