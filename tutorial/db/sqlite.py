@@ -26,7 +26,7 @@ def create_table():
 def insert_table():
     """ INSERT 操作 """
     conn.execute('''INSERT  INTO  COMPANY(ID, NAME, AGE, ADDRESS, SALARY) 
-            VALUES (3, 'John', 35, 'Los Angels', 50000) ''')
+            VALUES (3, 'John', 35, 'Washington', 50000) ''')
     conn.commit()
     print('->INSERT table successfully')
 
