@@ -26,7 +26,7 @@ class PythonNumbers(unittest.TestCase):
 		print('Random number between 0~6: %s' % random.randrange(7))
 		print('Random odd number between 1~9: %s' % random.randrange(1, 10, 2))  # 从指定范围内，按指定基数递增的集合中获取一个随机数，基数缺省值为1
 		print('Random number between 0~1: %s' % random.random())  # 返回随机生成的一个实数，它在[0,1)范围内
-		list_ = [1, 2, 3];
+		list_ = [1, 2, 3]
 		random.shuffle(list_)  # 将序列的所有元素随机排序
 		print('Random shuffled list: %s' % list_)
 		print('Random number between given range: %s' % random.uniform(math.e, math.pi))  # 随机生成下一个实数，它在[x,y]范围内
