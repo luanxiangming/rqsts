@@ -1,17 +1,18 @@
 from wechat_sender import listen
 from wxpy import *
+from tutorial.wechat import config
 
 
 def sender_outside():
 	# 登录微信并启动 wechat_sender 服务, cache_path为 `True` 时，使用默认的缓存路径 'wxpy.pkl'
 	bot = Bot(cache_path=True, console_qr=True)
 	bot.enable_puid()
-	me = bot.friends().search('祥明')[0]
-	rcv = bot.friends().search('栾吉')[0]
-	group = bot.groups().search('家庭')[0]
+	me = bot.friends().search(config.me)[0]
+	to = bot.friends().search(config.to)[0]
+	group = bot.groups().search(config.group)[0]
 
 	print('发送者: ' + me.name + '(' + me.puid + ')')
-	print('接收者: ' + rcv.name + '(' + rcv.puid + ')')
+	print('接收者: ' + to.name + '(' + to.puid + ')')
 	print('接收组: ' + group.name + '(' + group.puid + ')')
 
 	'''
@@ -23,7 +24,7 @@ def sender_outside():
 	
 	注意：receivers和status_receiver不能是发送者自己
 	'''
-	listen(bot, receivers=[rcv, group], status_report=True, status_receiver=me)
+	listen(bot, receivers=[to, group], status_report=True, status_receiver=me)  # to是默认接收者
 
 
 sender_outside()
