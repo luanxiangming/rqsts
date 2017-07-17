@@ -57,9 +57,8 @@ class PythonDicts(unittest.TestCase):
 		dict_.update(self.dict2)  # 把字典dict2的键/值对更新到dict_里
 		self.assertEqual(dict_, {'Name': 'Python', 'School': 'Harvard', 'nation': 'CN'})
 
-	''' 初始化字典 '''
-
 	def test_defaultdict(self):
+		""" 初始化字典 """
 		print('module defaultdict: ')
 		print(dir(defaultdict))
 		d = defaultdict(lambda: 100)

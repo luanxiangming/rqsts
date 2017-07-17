@@ -10,9 +10,8 @@ def test_mutable_args():
 
 def test_lambda():
 	sum = lambda arg1, arg2: arg1 + arg2
-	# self.assertEqual(sum(10, 20), 30)
-	print('sum: ' + str(sum))
-	print('sum(1, 10): ' + str(sum(1, 10)))
+	print('sum: ', sum)
+	print('sum(1, 10): ', sum(1, 10))
 
 	# 排序函数sorted()可以接收一个函数作为参数
 	list_ = [-2, -4, -3, 1]
@@ -21,19 +20,19 @@ def test_lambda():
 	print(list(sorted(list_, key=lambda x: x[1], reverse=True)))
 
 
-# 当内部作用域想修改外部作用域的变量时，就要用到global和nonlocal关键字了
 num = 1
 
 
 def test_global_var():
+	""" 当内部作用域想修改外部作用域的变量时，就要用到global和nonlocal关键字了 """
 	global num  # 需要使用 global 关键字声明
 	print('global: ' + str(num))
 	num = 100
 	print('local: ' + str(num))
 
 
-# 如果要修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字了
 def test_outer():
+	""" 如果要修改嵌套作用域（enclosing 作用域，外层非全局作用域）中的变量则需要 nonlocal 关键字了 """
 	num = 200
 
 	def test_inner():
@@ -45,7 +44,7 @@ def test_outer():
 	print('outer: ' + str(num))
 
 
-if __name__ == '__main__':
-	test_lambda()
-	test_outer()
-	test_global_var()
+test_lambda()
+test_outer()
+test_global_var()
+test_mutable_args()

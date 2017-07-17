@@ -54,6 +54,12 @@ class PythonGenerators(unittest.TestCase):
 			counter += 1
 
 	def test_generator(self):
+		""" 生成器可以用作迭代器，也就是说它可以用于for语句 """
+		for i in self.fibonacci(1000):
+			if i < 1000:
+				print(i)
+
+		""" 或者用于next函数中来得到下一个值 """
 		f = self.fibonacci(10)  # f是一个迭代器，由生成器返回生成
 		while True:
 			try:
@@ -69,6 +75,10 @@ class PythonGenerators(unittest.TestCase):
 			a, b = b, a + b
 
 	def test_generators(self):
+		for i in self.fibonacci2():  # 用作迭代器
+			if i > 100:
+				break
+			print(i)
 		self.assertEqual(list(itertools.islice(self.fibonacci2(), 0, 5)), [0, 1, 1, 2, 3])
 
 	def test_generator_expression(self):
@@ -133,8 +143,15 @@ class PythonItertools(unittest.TestCase):
 		it = itertools.product('ab', [1, 2])
 		self.assertEqual(list(it), [('a', 1), ('a', 2), ('b', 1), ('b', 2)])
 
+	def test_permutations(self):
+		""" permutations会生成一组序列的所有可能排列 """
+		print('itertools.permutations:')
+		for p in itertools.permutations([1, 2, 3]):
+			print(p)
+
 	def test_combinations(self):
-		""" 从'abc'中挑选两个元素，比如ab, bc, ... 将所有结果排序，返回为新的循环器 """
+		""" 从'abc'中挑选两个元素，比如ab, bc, ... 将所有结果排序，返回为新的循环器
+		顺序无关紧要（不同于permutations）"""
 		it = itertools.combinations('abc', 2)
 		self.assertEqual(list(it), [('a', 'b'), ('a', 'c'), ('b', 'c')])
 

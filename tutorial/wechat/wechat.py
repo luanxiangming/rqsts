@@ -14,6 +14,9 @@ def sender_outside():
 	print('发送者: ' + me.name + '(' + me.puid + ')')
 	print('接收者: ' + to.name + '(' + to.puid + ')')
 	print('接收组: ' + group.name + '(' + group.puid + ')')
+	print('所有组: \n')
+	for group in bot.groups():
+		print(group.name + ': ' + group.puid)
 
 	'''
 	之后 wechat_sender 将持续运行等待接收外部消息
