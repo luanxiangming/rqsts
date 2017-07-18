@@ -67,7 +67,7 @@ class PythonFiles(unittest.TestCase):
 		with open('tmp/foo.txt', 'r+') as f:
 			f.truncate(2)  # 指定了可选参数size，则表示截断文件为size 个字符
 			print('Lines after str truncate: ' + str(f.readlines()))
-			f.seek(0, 0);
+			f.seek(0, 0)
 			f.write('A: Python is great computer language.\nB: Yes, indeed.\n')  # 将string写入到文件中,然后返回写入的字符数
 
 	def test_write(self):

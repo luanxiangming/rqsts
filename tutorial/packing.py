@@ -23,7 +23,7 @@ def unpacking():
 def f(*args, **kwargs):
 	""" 反过来也是可以的，你可以定义一个函数，将单个tuple里的所有参数和单个dict里的所有的关键字参数组包 """
 	print('args: ', args)
-	print('keyword args: ', kwargs.items())
+	print('keyword args: ', kwargs)
 
 
 packing()

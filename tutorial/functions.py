@@ -1,3 +1,6 @@
+import functools
+
+
 def print_info(arg1, *argtuple):
 	print(arg1)
 	for arg in argtuple:
@@ -44,7 +47,37 @@ def test_outer():
 	print('outer: ' + str(num))
 
 
+def cache(function):
+	""" 装饰器是一个接受函数作为参数并返回函数的函数
+	cache函数用作装饰器来记住已经计算出的斐波那契数 """
+	cached_values = {}  # Contains already computed values
+
+	def wrapping_function(*args):
+		if args not in cached_values:
+			# Call the function only if we've not already done it for those parameters
+			cached_values[args] = function(*args)
+		return cached_values[args]
+
+	return wrapping_function
+
+
+@cache
+@functools.lru_cache(None)
+def fibonacci(n):
+	""" functools模块提供了几个装饰器，例如lru_cache，它可以实现我们刚刚做的：存储。
+	当使用相同的参数调用给定的函数时，它可以保存最近的调用来节省时间 """
+	x, y = 0, 1
+	for i in range(n):
+		x, y = y, x + y
+	return x
+
+
+def test_cache():
+	print([fibonacci(n) for n in range(10)])
+
+
 test_lambda()
 test_outer()
 test_global_var()
 test_mutable_args()
+test_cache()
