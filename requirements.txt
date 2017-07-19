@@ -5,6 +5,7 @@ future==0.16.0
 idna==2.5
 itchat==1.2.32
 psutil==5.2.2
+PyMySQL==0.7.11
 pypng==0.0.18
 PyQRCode==1.2.1
 redis==2.10.5

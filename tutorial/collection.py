@@ -44,6 +44,8 @@ def collections_counter():
 	for i in 'Programming':
 		c[i] += 1
 	print(c)
+	for i, c in c.most_common():  # most_common这个列表中的每个元素都返回一个元祖，一组有序唯一值
+		print(i, c)
 	print('\n')
 
 

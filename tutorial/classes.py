@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Test:
 	# 类的实例化操作会自动调用 __init__() 构造方法
 	def __init__(self):
@@ -47,10 +50,9 @@ class Speaker:
 s = Speaker("Economic", 'Hayek')
 s.speak()
 
-''' 单继承 '''
-
 
 class Student(People):
+	""" 单继承 """
 	grade = ''
 
 	def __init__(self, n, a, w, g):
@@ -64,10 +66,10 @@ class Student(People):
 s = Student('John', 12, 60, 'fifth')
 s.speak()
 
-''' 多继承 '''
-
 
 class Sample(Speaker, Student):
+	""" 多继承 """
+
 	def __init__(self, t, n, a, w, g):
 		Speaker.__init__(self, t, n)
 		Student.__init__(self, n, a, w, g)
@@ -76,41 +78,41 @@ class Sample(Speaker, Student):
 sample = Sample('Python', 'Lewis', '20', 50, '10th')
 sample.speak()  # 方法名同，默认调用的是在括号中排前地父类的方法
 
-'''类的专有方法：
-__init__ : 构造函数，在生成对象时调用
-__del__ : 析构函数，释放对象时使用
-__repr__ : 打印，转换
-__setitem__ : 按照索引赋值
-__getitem__: 按照索引获取值
-__len__: 获得长度
-__cmp__: 比较运算
-__call__: 函数调用
-__add__: 加运算
-__sub__: 减运算
-__mul__: 乘运算
-__div__: 除运算
-__mod__: 求余运算
-__pow__: 称方
-'''
-
 
 class Vector:
+	"""类的专有方法：
+	__init__ : 构造函数，在生成对象时调用
+	__del__ : 析构函数，释放对象时使用
+	__repr__ : 打印，转换
+	__setitem__ : 按照索引赋值
+	__getitem__: 按照索引获取值
+	__len__: 获得长度
+	__cmp__: 比较运算
+	__call__: 函数调用
+	__add__: 加运算
+	__sub__: 减运算
+	__mul__: 乘运算
+	__div__: 除运算
+	__mod__: 求余运算
+	__pow__: 称方
+	"""
+
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
 
 	def __str__(self):
-		return ('Vector: ({}, {})'.format(self.x, self.y))
+		return 'Vector: ({}, {})'.format(self.x, self.y)
 
-	# 可以对类的专有方法进行重载
 	def __add__(self, other):
+		""" 可以对类的专有方法进行重载 """
 		return Vector(self.x + other.x, self.y + other.y)
 
 	def __mul__(self, other):
 		return Vector(self.x * other.x, self.y * other.y)
 
 	def __len__(self):
-		return (self.x + self.y)
+		return self.x + self.y
 
 
 v1 = Vector(1, 2)
@@ -118,3 +120,19 @@ v2 = Vector(3, 4)
 print(v1 + v2)
 print(v1 * v2)
 print(len(v1), len(v2))
+
+
+class Animal(Enum):
+	""" Python没有enum块，但它有Enum模块
+	Enum创建了一个固定数量的类的集合而不是类属性
+	"""
+	cat = 0
+	dog = 1
+	mouse = 2
+	snake = 3
+
+
+print(Animal.cat)
+print(Animal.cat.value)
+print(Animal(2))
+print(Animal['dog'])

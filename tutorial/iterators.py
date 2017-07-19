@@ -114,12 +114,11 @@ class PythonItertools(unittest.TestCase):
 		it = itertools.repeat('L', 3)  # repeat()把一个元素无限重复下去，第二个参数就可以限定重复次数
 		self.assertEqual(list(it), ['L', 'L', 'L'])
 
-	"""
-	对于无限迭代, 可以通过takewhile()
-	等函数根据条件判断来截取出一个有限的序列
-	"""
-
 	def test_takewhile(self):
+		"""
+		对于无限迭代, 可以通过takewhile()
+		等函数根据条件判断来截取出一个有限的序列
+		"""
 		naturals = itertools.count(1)
 		ns = itertools.takewhile(lambda x: x < 5, naturals)  # 当函数返回True时，收集元素到循环器。一旦函数返回False，则停止
 		self.assertEqual(list(ns), [1, 2, 3, 4])

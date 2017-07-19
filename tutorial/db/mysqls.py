@@ -26,11 +26,11 @@ class PythonMySQL(unittest.TestCase):
 
 	@classmethod
 	def tearDownClass(self):
+		self.cursor.close()
 		self.conn.close()
 
-	''' 测试数据库连接 '''
-
 	def test_connect_database(self):
+		""" 测试数据库连接 """
 		print('module pymysql: ')
 		print(dir(pymysql))
 
@@ -43,9 +43,8 @@ class PythonMySQL(unittest.TestCase):
 		data = self.cursor.fetchall()
 		print("Data : %s " % str(data))
 
-	''' 创建数据库表 '''
-
 	def test_create_table(self):
+		""" 创建数据库表 """
 		sql_drop = r'DROP TABLE IF EXISTS {}'.format(self.TB)
 		self.cursor.execute(sql_drop)
 
@@ -57,9 +56,8 @@ class PythonMySQL(unittest.TestCase):
 					INCOME FLOAT)'''.format(self.TB)
 		self.cursor.execute(sql_create)
 
-	''' 数据库插入操作 '''
-
 	def test_insert_table(self):
+		""" 数据库插入操作 """
 		sql_insert = '''INSERT INTO {}(FIRST_NAME, LAST_NAME, AGE, SEX, INCOME) 
 						VALUES ("Adam", "Smith", 1000, "M", 3000)'''.format(self.TB)
 		try:
@@ -68,12 +66,12 @@ class PythonMySQL(unittest.TestCase):
 		except:
 			self.conn.rollback()  # 发生错误时回滚
 
-	''' 数据库查询操作 
-	fetchone(): 该方法获取下一个查询结果集。结果集是一个对象
-	fetchall(): 接收全部的返回结果行.
-	rowcount: 这是一个只读属性，并返回执行execute()方法后影响的行数。'''
-
 	def test_fetch_table(self):
+		"""数据库查询操作
+		fetchone(): 该方法获取下一个查询结果集。结果集是一个对象
+		fetchall(): 接收全部的返回结果行.
+		rowcount: 这是一个只读属性，并返回执行execute()方法后影响的行数。
+		"""
 		sql_fetch = ''' SELECT * FROM {} WHERE INCOME > 1000'''.format(self.TB)
 		self.cursor.execute(sql_fetch)
 		results = self.cursor.fetchall()
@@ -85,9 +83,8 @@ class PythonMySQL(unittest.TestCase):
 			income = result[4]
 			print('firstname: {}, lastname: {}, age: {}, sex: {}, income: {}'.format(fname, lname, age, sex, income))
 
-	''' 数据库更新操作 '''
-
 	def test_update_table(self):
+		""" 数据库更新操作 """
 		sql_update = "UPDATE {} SET SEX='M', AGE=AGE+1".format(self.TB)
 		try:
 			self.cursor.execute(sql_update)
@@ -95,9 +92,8 @@ class PythonMySQL(unittest.TestCase):
 		except:
 			self.conn.rollback()
 
-	''' 删除操作 '''
-
 	def test_delete_table(self):
+		""" 删除操作 """
 		sql_del = "DELETE FROM {} WHERE AGE>{}".format(self.TB, 1000)
 		try:
 			self.cursor.execute(sql_del)

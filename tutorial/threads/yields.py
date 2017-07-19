@@ -27,3 +27,16 @@ a = f()
 print('next()返回yield 1的参数: ' + str(next(a)))  # send(msg)与next()返回的是下一个yield表达式的参数
 print('next()返回yield 2的参数: ' + str(next(a)))
 a.send('为yield 2赋值')
+
+
+def odd_numbers():
+	n = 1
+	while True:
+		yield n
+		n += 2
+
+
+for x in odd_numbers():
+	print(x)
+	if x > 10:
+		break

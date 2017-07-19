@@ -1,5 +1,7 @@
 import sqlite3
 
+import sys
+
 """ 连接到一个现有的数据库。如果数据库不存在，那么它就会被创建，最后将返回一个数据库对象 """
 conn = sqlite3.connect('test.db')
 cursor = conn.cursor()
@@ -7,13 +9,13 @@ print('OPEN/CREATE db successfully')
 
 
 def close_db():
+    cursor.close()
     conn.close()
 
 
 def create_table():
     """ 创建表 """
-    connect_to_db()
-    conn.execute('''CREATE TABLE COMPANY
+    cursor.execute('''CREATE TABLE COMPANY
             (ID INT PRIMARY KEY NOT NULL,
             NAME TEXT NOT NULL,
             AGE INT NOT NULL ,
@@ -25,17 +27,17 @@ def create_table():
 
 def insert_table():
     """ INSERT 操作 """
-    conn.execute('''INSERT  INTO  COMPANY(ID, NAME, AGE, ADDRESS, SALARY) 
+    cursor.execute('''INSERT  INTO  COMPANY(ID, NAME, AGE, ADDRESS, SALARY) 
             VALUES (3, 'John', 35, 'Washington', 50000) ''')
     conn.commit()
-    print('->INSERT table successfully')
+    print('->INSERT %d rows' % cursor.rowcount)
 
 
 def select_table():
     """ SELECT 操作 """
-    results = cursor.execute('''SELECT * FROM COMPANY
+    cursor.execute('''SELECT * FROM COMPANY
             ''')
-    print_results(results)
+    print_results(cursor.fetchall())  # 通过featchall()可以拿到结果集。结果集是一个list，每个元素都是一个tuple，对应一行记录
 
 
 def update_table():
@@ -67,14 +69,18 @@ def main():
     print("module sqlite3: ")
     print(dir(sqlite3))
 
-    # create_table()
-    # insert_table()
-    select_table()
-    update_table()
-    select_table()
-    delete_table()
-    select_table()
-    close_db()
+    try:
+        # create_table()
+        insert_table()
+        select_table()
+        update_table()
+        select_table()
+        delete_table()
+        select_table()
+    except:
+        print('Unexpected Error: ' + str(sys.exc_info()))
+    finally:
+        close_db()
 
 
 if __name__ == '__main__':

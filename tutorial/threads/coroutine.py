@@ -14,7 +14,7 @@ def consumer():
 	print('*****生成器启动*****')
 	while True:
 		''' yield不但可以返回一个值，它还可以接收调用者发出的参数 '''
-		n = yield r  # 4.再次执行时从这里的yield继续执行, 将把produce传入的参数n赋给局部变量n, 下轮循环再次遇到yield就会就将r返回给produce函数
+		n = yield r  # 4.再次执行时从这里的yield继续执行, 将把produce传入的参数n赋给局部变量n, 下轮循环再次遇到yield就将r返回给produce函数
 		if not n:
 			return
 		print('[CONSUMER] Consuming %s..' % n)  # 5.由于生成器在启动的时候遇到上面的yield就返回了, 所以第一次不会执行这条语句, 之后每次都会被执行
