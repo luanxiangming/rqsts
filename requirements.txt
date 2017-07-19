@@ -10,6 +10,7 @@ pypng==0.0.18
 PyQRCode==1.2.1
 redis==2.10.5
 requests==2.18.1
+SQLAlchemy==1.1.11
 tornado==4.5.1
 urllib3==1.21.1
 wechat-sender==0.1.4
