@@ -30,8 +30,14 @@ class People:
 		self.age = a
 		self.__weight = w
 
+	def __repr__(self):
+		return "%s-%s-%s-%s" % (self.__class__, self.name, self.age, self.__weight)
+
+	def __str__(self):
+		return "%s: %s" % (self.name, self.age)
+
 	def speak(self):  # 覆写父类的方法
-		print('\nMy name is {} and {} years old'.format(self.name, self.age))
+		print('\nMy name is {} and {} years old, weight-{}'.format(self.name, self.age, self.__weight))
 
 
 p = People('Alice', 10, 50)
@@ -102,6 +108,7 @@ class Vector:
 		self.y = y
 
 	def __str__(self):
+		""" 如果没有提供 __str__，缺省使用 repr() 的结果, 优先使用 str() 的结果"""
 		return 'Vector: ({}, {})'.format(self.x, self.y)
 
 	def __add__(self, other):
@@ -114,12 +121,21 @@ class Vector:
 	def __len__(self):
 		return self.x + self.y
 
+	def set(this, x, y):
+		""" self 并不是关键字，甚至可以用其它名字替代，比如 this """
+		this.x = x
+		this.y = y
+
 
 v1 = Vector(1, 2)
 v2 = Vector(3, 4)
-print(v1 + v2)
-print(v1 * v2)
-print(len(v1), len(v2))
+
+# set(...) 其实只是一个语法糖，你也可以写成 Vector.set(v, ...)，这样就能明显看出 v 就是 self 参数了
+v1.set(5, 5)
+Vector.set(v2, 10, 10)
+print('v1+v2:', v1 + v2)
+print('v1*v2: ', v1 * v2)
+print('len(v1), len(v2): ', len(v1), len(v2))
 
 
 class Animal(Enum):
