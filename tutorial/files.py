@@ -1,5 +1,7 @@
 import glob
 import itertools
+import pathlib
+
 import os
 import pickle
 import unittest
@@ -18,18 +20,48 @@ class PythonFiles(unittest.TestCase):
 	def test_file_flush(self):
 		pass
 
-	# 返回一个整型的文件描述符(file descriptor FD 整型)，可用于底层操作系统的I/O操作
+	def test_file_exists(self):
+		# os.path.exists()方法，判断文件和文件夹是一样。
+		self.assertTrue(os.path.exists('tmp'))
+		self.assertTrue(os.path.exists('tmp/foo.txt'))
+		# 只检查文件
+		self.assertFalse(os.path.isfile('tmp'))
+		self.assertTrue(os.path.isfile('tmp/foo.txt'))
+
+	def test_file_access(self):
+		""" 判断文件是否可做读写操作 """
+		self.assertTrue(os.access('tmp', os.F_OK))  # 文件是否存在
+		self.assertTrue(os.access('tmp/foo.txt', os.R_OK))  # 文件是否可读
+		self.assertTrue(os.access('tmp/foo.txt', os.W_OK))  # 文件是否可写
+		self.assertTrue(os.access('tmp/foo.txt', os.X_OK))  # 文件是否可执行
+
+	def test_file_open(self):
+		""" 可以在程序中直接使用open()方法来检查文件是否存在和可读写 """
+		try:
+			with open('tmp/foo1.txt') as f:
+				print('Try to open %s' % f)
+		except IOError:
+			print('File cannot be accessed')
+
+	def test_pathlib(self):
+		""" 使用pathlib需要先使用文件路径来创建path对象。此路径可以是文件名或目录路径 """
+		dir_path = pathlib.Path('tmp')
+		self.assertTrue(dir_path.exists())  # 检查路径是否存在
+		file_path = pathlib.Path('tmp/foo.txt')
+		self.assertTrue(file_path.is_file())  # 检查路径是否是文件
+
 	def test_fileno(self):
+		""" 返回一个整型的文件描述符(file descriptor FD 整型)，可用于底层操作系统的I/O操作 """
 		with open('tmp/foo.txt', 'r') as f:
 			print(f.fileno())
 
-	# 检测文件是否连接到一个终端设备
 	def test_fileisatty(self):
+		""" 检测文件是否连接到一个终端设备 """
 		with open('tmp/foo.txt', 'r') as f:
 			self.assertFalse(f.isatty())
 
-	# 函数 next() 通过迭代器调用 __next__() 方法返回下一项
 	def test_file_next(self):
+		""" 函数 next() 通过迭代器调用 __next__() 方法返回下一项 """
 		with open('tmp/foo.txt', 'r') as f:
 			for row in range(2):
 				print('Row {row}: {line}'.format(row=row, line=next(f)))
