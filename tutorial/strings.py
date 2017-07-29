@@ -58,5 +58,5 @@ class PythonString(unittest.TestCase):
 		self.assertFalse('this is string'.startswith('th', 2))  # 参数beg和end指定值，则在指定范围内检查
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	unittest.main()

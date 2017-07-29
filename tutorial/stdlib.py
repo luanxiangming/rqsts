@@ -43,6 +43,15 @@ class PythonStdLib(unittest.TestCase):
 		"""
 		print(glob.glob('*.py'))
 
+	def test_sys(self):
+		""" All objects are reference-counted """
+		origin = sys.getrefcount(5)
+		a = 5
+		b = a  # This creates a 'reference' to the object on the right side of =, thus both a and b point to 5
+		self.assertEqual(sys.getrefcount(5), origin + 2)
+		del a
+		self.assertEqual(sys.getrefcount(5), origin + 1)
+
 	def test_argv(self):
 		""" 命令行参数 """
 		print(sys.argv)

@@ -2,6 +2,11 @@ import functools
 
 
 def print_info(arg1, *argtuple):
+	"""
+	Internally, arguments are packed into a tuple
+	and dict, function receives a tuple 'args' and
+	dict 'kwargs' and internally unpack.
+	"""
 	print(arg1)
 	for arg in argtuple:
 		print(arg)
@@ -47,6 +52,15 @@ def test_outer():
 	print('outer: ' + str(num))
 
 
+def returns(x, y):
+	return x * 10, y * 10
+
+
+def test_returns():
+	x, y = returns(10, 10)
+	print(x, y)
+
+
 def cache(function):
 	""" 装饰器是一个接受函数作为参数并返回函数的函数
 	cache函数用作装饰器来记住已经计算出的斐波那契数 """
@@ -81,3 +95,4 @@ test_outer()
 test_global_var()
 test_mutable_args()
 test_cache()
+test_returns()

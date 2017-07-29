@@ -82,6 +82,7 @@ class PythonDicts(unittest.TestCase):
 		print('lambda: {**self.dict1, **self.dict2}')
 		print(min(timeit.repeat(lambda: {**self.dict1, **self.dict2})))
 
+		""" Nested Dict Comprehension """
 		print('lambda: {k: v for d in (self.dict1, self.dict2) for k, v in d.items()}')
 		print(min(timeit.repeat(lambda: {k: v for d in (self.dict1, self.dict2) for k, v in d.items()})))
 
@@ -91,6 +92,7 @@ class PythonDicts(unittest.TestCase):
 	def test_hashable(self):
 		self.assertTrue(hash('This is hashable'))
 		self.assertTrue(hash((1, 2)))
+
 
 if __name__ == '__main__':
 	unittest.main()

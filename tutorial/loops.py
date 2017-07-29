@@ -37,8 +37,8 @@ class PythonLoops(unittest.TestCase):
 				break
 			print(site)
 
-	# 循环语句可以有else子句，它在穷尽列表(以for循环)或条件变为false(以while循环)导致循环终止时被执行,但循环被break终止时不执行
 	def test_for_else(self):
+		""" 循环语句可以有else子句，它在穷尽列表(以for循环)或条件变为false(以while循环)导致循环终止时被执行,但循环被break终止时不执行 """
 		sites = ["Baidu", "Google", "Runoob", "Taobao"]
 		for site in sites:
 			if site == 'Runoob':
@@ -68,8 +68,8 @@ class PythonLoops(unittest.TestCase):
 		for index, value in enumerate(a):
 			print(index, value)
 
-	# continue语句被用来告诉Python跳过当前循环块中的剩余语句，然后继续进行下一轮循环
 	def test_continue(self):
+		""" continue语句被用来告诉Python跳过当前循环块中的剩余语句，然后继续进行下一轮循环 """
 		for letter in 'Python':
 			if letter == 't':
 				continue
