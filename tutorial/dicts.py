@@ -7,9 +7,16 @@ class PythonDicts(unittest.TestCase):
 	def setUp(self):
 		self.dict1 = {'Name': 'Runoob', 'Age': 7, 'Class': 'First'}
 		self.dict2 = {'Name': 'Python'}
+		self.keys = ['Python', 'Java', 'Go']
+		self.values = ['PYTHON', 'JAVA', 'GO']
 
 	def tearDown(self):
 		self.dict1 = {}
+
+	def test_create(self):
+		""" Create Dict from Sequence """
+		dict_ = dict(zip(self.keys, self.values))
+		self.assertEqual(dict_, {'Python': 'PYTHON', 'Java': 'JAVA', 'Go': 'GO'})
 
 	def test_update(self):
 		self.dict1['Age'] = 17
@@ -18,6 +25,7 @@ class PythonDicts(unittest.TestCase):
 		self.assertEqual(self.dict1['School'], 'Harvard')
 
 	def test_del(self):
+		""" Delete Element """
 		del self.dict1['Class']
 		self.assertEqual(self.dict1, {'Name': 'Runoob', 'Age': 7})
 
@@ -80,6 +88,9 @@ class PythonDicts(unittest.TestCase):
 		print('lambda: dict((k, v) for d in (self.dict1, self.dict2) for k, v in d.items()')
 		print(min(timeit.repeat(lambda: dict((k, v) for d in (self.dict1, self.dict2) for k, v in d.items()))))
 
+	def test_hashable(self):
+		self.assertTrue(hash('This is hashable'))
+		self.assertTrue(hash((1, 2)))
 
 if __name__ == '__main__':
 	unittest.main()

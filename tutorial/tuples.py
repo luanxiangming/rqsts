@@ -5,9 +5,16 @@ class PythonTuples(unittest.TestCase):
 	def setUp(self):
 		self.tup1 = ('Google', 'Runoob', 1997, 2000)
 		self.tup2 = (1, 2, 3, 4, 5, 6, 7)
+		self.tup3 = 'Google', 'Runoob', 1997, 2000
 
 	def tearDown(self):
-		self.tup1, self.tup2 = (), ()
+		self.tup1, self.tup2, self.tup3 = (), (), ()
+
+	def test_create(self):
+		self.assertEqual(self.tup1, self.tup3)
+
+	def test_convert(self):
+		self.assertEqual(tuple([1, 2, 3, 4, 5, 6, 7]), self.tup2)
 
 	def test_update(self):
 		tup = self.tup1 + self.tup2
