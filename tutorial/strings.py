@@ -1,4 +1,6 @@
 import unittest
+import string
+import re
 
 
 class PythonString(unittest.TestCase):
@@ -17,6 +19,7 @@ class PythonString(unittest.TestCase):
 		self.assertEqual('firsts'.rfind('s'), 5)  # 返回字符串最后一次出现的位置，如果没有匹配项则返回-1
 		self.assertEqual('firsts'.index('s'), 3)  # 与find()方法一样，只不过如果str不在string中会报一个异常ValueError
 		self.assertEqual('firsts'.rindex('s'), 5)  # 类似于index()，不过是从右边开始
+		self.assertEqual(re.findall('.{1,3}', '1234567890'), ['123', '456', '789', '0'])  # 以三个长度分割字符串
 
 		self.assertTrue('runoob2016'.isalnum())
 		self.assertFalse('www runoob.2016'.isalnum())  # 检测字符串是否由字母和数字组成
@@ -50,12 +53,33 @@ class PythonString(unittest.TestCase):
 
 		self.assertEqual(max('aeiou'), 'u')  # 返回字符串中最大的字母
 		self.assertEqual(min('aeiouV'), 'V')  # 返回字符串中最小的字母
-		self.assertEqual('This is island'.replace('is', 'was', 2), 'Thwas was island')  # 把将字符串中的str1替换成str2,如果max指定则替换不超过max次
-		self.assertEqual('this is string example'.split('t', 1), ['', 'his is string example'])  # 指定分隔符对字符串进行切片,仅分隔num个子字符串
-		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(), ['ab c', '', 'de fg', 'kl'])  # 按照行('\r','\r\n',\n')分隔,返回一个包含各行作为元素的列表
-		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(True), ['ab c\n', '\n', 'de fg\r', 'kl\r\n'])  # 参数keepends为False,不包含换行符为True,保留换行符
+		self.assertEqual('This is island'.replace('is', 'was', 2),
+		                 'Thwas was island')  # 把将字符串中的str1替换成str2,如果max指定则替换不超过max次
+		self.assertEqual('this is string example'.split('t', 1),
+		                 ['', 'his is string example'])  # 指定分隔符对字符串进行切片,仅分隔num个子字符串
+		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(),
+		                 ['ab c', '', 'de fg', 'kl'])  # 按照行('\r','\r\n',\n')分隔,返回一个包含各行作为元素的列表
+		self.assertEqual('ab c\n\nde fg\rkl\r\n'.splitlines(True),
+		                 ['ab c\n', '\n', 'de fg\r', 'kl\r\n'])  # 参数keepends为False,不包含换行符为True,保留换行符
 		self.assertTrue('this is string'.startswith('th'))
 		self.assertFalse('this is string'.startswith('th', 2))  # 参数beg和end指定值，则在指定范围内检查
+
+	def test_const(self):
+		""" 字符串常量 """
+		self.assertEqual(string.ascii_uppercase, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+		self.assertEqual(string.ascii_lowercase, 'abcdefghijklmnopqrstuvwxyz')
+		self.assertEqual(string.ascii_letters, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+		self.assertEqual(string.digits, '0123456789')
+		self.assertEqual(string.hexdigits, '0123456789abcdefABCDEF')
+		self.assertEqual(string.octdigits, '01234567')
+		self.assertEqual(string.punctuation, '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~')  # 所有标点字符
+		self.assertEqual(string.whitespace, " \t\n\r\x0b\x0c")  # 空白字符
+		print("\n所有可打印字符的字符串: " + string.printable)
+
+	def test_template(self):
+		""" string.Template可以为Python定制字符串的替换标准 """
+		s = string.Template('$who like $what')
+		self.assertEqual(s.substitute(who='i', what='python'), 'i like python')
 
 
 if __name__ == '__main__':
